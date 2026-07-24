@@ -1,0 +1,352 @@
+openapi: 3.0.1
+info:
+  title: Thatch for Platforms Deductions Enrollments API
+  description: '<p><a href="https://thatch.com/platforms">Thatch for Platforms</a> is a set of APIs and
+
+    embeddable components, enabling you to effortlessly bring ICHRA (Individual Coverage Health
+
+    Reimbursement Arrangement) benefits to your customers.</p><p>Thatch for Platforms is only
+
+    available to specific partners. Get in touch with us at
+
+    <a href="mailto:platforms@thatch.com">platforms@thatch.com</a> to set up an account.</p>
+
+    '
+  version: ''
+servers:
+- url: //partners.thatchcloud.com/api/partners/v1/
+security:
+- Bearer: []
+tags:
+- name: Enrollments
+  description: Enrollments use member objects to track employee coverage status.
+paths:
+  /enrollments:
+    get:
+      tags:
+      - Enrollments
+      summary: List enrollments
+      description: List enrollments
+      operationId: getEnrollments
+      parameters:
+      - name: page[number]
+        in: query
+        description: Page number
+        schema:
+          minimum: 1
+          type: integer
+          format: int32
+          default: 1
+      - name: page[size]
+        in: query
+        description: Number of items per page. Must be between 1 and 1,000 (inclusive). Defaults to 20.
+        schema:
+          maximum: 1000
+          minimum: 1
+          type: integer
+          format: int32
+          default: 20
+      - name: member_id
+        in: query
+        description: Member ID
+        schema:
+          type: string
+        example: mbr_01j7h53qa133q71z25n7a3w0n4
+      - name: status
+        in: query
+        description: Enrollment status
+        schema:
+          type: string
+          enum:
+          - in_member_cart
+          - member_confirmed
+          - submission_processing
+          - carrier_processing
+          - completed
+          - canceled
+        example: completed
+      responses:
+        '200':
+          description: List enrollments
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedEnrollmentList'
+  /enrollments/{id}:
+    get:
+      tags:
+      - Enrollments
+      summary: Get an enrollment
+      description: Get an enrollment
+      operationId: getEnrollmentsId
+      parameters:
+      - name: id
+        in: path
+        description: Enrollment ID
+        required: true
+        schema:
+          type: string
+        example: enrlmt_01j7h53qgy8m2q1f7563hbvpqj
+      responses:
+        '200':
+          description: Get an enrollment
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Enrollment'
+components:
+  schemas:
+    MedicalPlan:
+      required:
+      - carrier_name
+      - hsa_eligible
+      - id
+      - name
+      type: object
+      properties:
+        id:
+          type: string
+          description: The ID of the medical plan
+          example: mdpln_01j7h53nf2j0hc5a235b6xmxn4
+        name:
+          type: string
+          description: The name of the plan
+          example: Anthem Bronze 60 D HMO
+        carrier_name:
+          type: string
+          description: The name of the carrier
+          example: Anthem
+        hsa_eligible:
+          type: boolean
+          description: Whether the plan is HSA eligible
+          example: false
+        logo_url:
+          type: string
+          description: The URL of the carrier logo
+        sbc_url:
+          type: string
+          description: URL to the plan's SBC document
+    PaginatedEnrollmentList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Enrollment'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+      description: PaginatedEnrollmentList model
+    Enrollment:
+      required:
+      - broker
+      - coverage_types
+      - enrollment_coverages
+      - id
+      - member_id
+      - plan_code
+      - premium
+      - status
+      - status_events
+      type: object
+      properties:
+        id:
+          type: string
+          description: The enrollment's unique identifier
+          example: enrlmt_01j7h53qgy8m2q1f7563hbvpqj
+        member_id:
+          type: string
+          description: The unique identifier for the member associated with the enrollment event
+          example: mbr_01j7h53qa133q71z25n7a3w0n4
+        coverage_types:
+          type: array
+          description: The types of benefits covered by the enrollment
+          example:
+          - medical
+          items:
+            type: string
+        status:
+          type: string
+          description: The enrollment's status
+          example: completed
+          enum:
+          - in_member_cart
+          - member_confirmed
+          - submission_processing
+          - carrier_processing
+          - completed
+          - canceled
+        status_events:
+          type: array
+          description: The enrollment's history of status change events
+          items:
+            $ref: '#/components/schemas/EnrollmentStatusEvent'
+        plan:
+          type: object
+          description: The medical plan associated with the enrollment, if one exists
+          allOf:
+          - $ref: '#/components/schemas/MedicalPlan'
+        plan_id:
+          type: string
+          description: Deprecated - use plan.id instead
+          example: mdpln_01j7h53nf2j0hc5a235b6xmxn4
+          deprecated: true
+        plan_code:
+          type: string
+          description: The enrollment's external plan code or plan name.
+          example: standard
+        premium:
+          type: object
+          description: The enrollment's most recent premium. The premium can change over time, for example, if the employee's dependents change.
+          allOf:
+          - $ref: '#/components/schemas/Money'
+        broker:
+          type: object
+          description: Detailed information about the broker associated with the enrollment
+          allOf:
+          - $ref: '#/components/schemas/Broker'
+        enrollment_coverages:
+          type: array
+          description: Detailed information about each participant covered by the enrollment
+          items:
+            $ref: '#/components/schemas/EnrollmentCoverage'
+      description: Enrollment model
+    Broker:
+      required:
+      - name
+      - npn
+      type: object
+      properties:
+        name:
+          type: string
+          description: The broker's name
+          example: Thatch Health Insurance Services LLC
+        npn:
+          type: string
+          description: The broker's National Producer Number (NPN)
+          example: '20782309'
+    EnrollmentCoverage:
+      required:
+      - date_of_birth
+      - end_date
+      - first_name
+      - gender
+      - last_name
+      - relationship
+      - start_date
+      type: object
+      properties:
+        first_name:
+          type: string
+          description: The enrolled participant's first name
+          example: Ana
+        last_name:
+          type: string
+          description: The enrolled participant's last name
+          example: Diaz
+        relationship:
+          type: string
+          description: The relationship of the enrolled participant to the member
+          example: self
+          enum:
+          - self
+          - spouse
+          - child
+        date_of_birth:
+          type: string
+          description: The enrolled participant's date of birth in YYYY-MM-DD format
+          format: date
+          example: '1990-01-02'
+        gender:
+          type: string
+          description: The enrolled participant's gender
+          example: female
+          enum:
+          - female
+          - male
+          - non_binary
+        start_date:
+          type: string
+          description: Start date of the coverage period (inclusive)
+          example: '2024-05-01'
+        end_date:
+          type: string
+          description: End date of the coverage period (inclusive)
+          example: '2024-12-31'
+    Money:
+      required:
+      - amount
+      - currency_code
+      type: object
+      properties:
+        amount:
+          type: integer
+          description: Amount as an integer in the smallest currency unit (e.g. 100 cents for $1.00)
+          format: int32
+          example: 1099
+        currency_code:
+          type: string
+          description: Three-letter ISO currency code
+          example: USD
+    EnrollmentStatusEvent:
+      required:
+      - status
+      - timestamp
+      type: object
+      properties:
+        status:
+          type: string
+          description: The status that the enrollment changed to
+          example: completed
+          enum:
+          - in_member_cart
+          - member_confirmed
+          - submission_processing
+          - carrier_processing
+          - completed
+          - canceled
+        timestamp:
+          type: string
+          description: The ISO 8601 date and time the enrollment's status changed
+          example: '2024-11-01T00:00:00Z'
+    Pagination:
+      required:
+      - current_page
+      - next_page
+      - prev_page
+      - total_pages
+      - total_records
+      type: object
+      properties:
+        total_records:
+          type: integer
+          description: Total number of records
+          format: int32
+          example: 25
+        current_page:
+          type: integer
+          description: Current page number
+          format: int32
+          example: 1
+        total_pages:
+          type: integer
+          description: Total number of pages
+          format: int32
+          example: 3
+        next_page:
+          type: integer
+          description: Next page number
+          format: int32
+          nullable: true
+          example: 2
+        prev_page:
+          type: integer
+          description: Previous page number
+          format: int32
+          nullable: true
+  securitySchemes:
+    Bearer:
+      type: apiKey
+      description: Provide your API key in a `Bearer` token header (as in, **Bearer sk_123**).
+      name: Authorization
+      in: header
+x-original-swagger-version: '2.0'

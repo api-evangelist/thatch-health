@@ -1,0 +1,790 @@
+openapi: 3.0.1
+info:
+  title: Thatch for Platforms Deductions Employers API
+  description: '<p><a href="https://thatch.com/platforms">Thatch for Platforms</a> is a set of APIs and
+
+    embeddable components, enabling you to effortlessly bring ICHRA (Individual Coverage Health
+
+    Reimbursement Arrangement) benefits to your customers.</p><p>Thatch for Platforms is only
+
+    available to specific partners. Get in touch with us at
+
+    <a href="mailto:platforms@thatch.com">platforms@thatch.com</a> to set up an account.</p>
+
+    '
+  version: ''
+servers:
+- url: //partners.thatchcloud.com/api/partners/v1/
+security:
+- Bearer: []
+tags:
+- name: Employers
+  description: 'Platforms onboard employers into Thatch, and have employees
+
+    enrolled in plans.
+
+    '
+paths:
+  /employers:
+    get:
+      tags:
+      - Employers
+      summary: List employers
+      description: List employers
+      operationId: getEmployers
+      parameters:
+      - name: page[number]
+        in: query
+        description: Page number
+        schema:
+          minimum: 1
+          type: integer
+          format: int32
+          default: 1
+      - name: page[size]
+        in: query
+        description: Number of items per page. Must be between 1 and 1,000 (inclusive). Defaults to 20.
+        schema:
+          maximum: 1000
+          minimum: 1
+          type: integer
+          format: int32
+          default: 20
+      responses:
+        '200':
+          description: List employers
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedEmployerList'
+    post:
+      tags:
+      - Employers
+      summary: Create an employer
+      description: Create an employer
+      operationId: postEmployers
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/postEmployers'
+        required: true
+      responses:
+        '201':
+          description: Create an employer
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Employer'
+      x-codegen-request-body-name: postEmployers
+  /employers/{employer_id}:
+    get:
+      tags:
+      - Employers
+      summary: Get an employer
+      description: Get an employer
+      operationId: getEmployersEmployerId
+      parameters:
+      - name: employer_id
+        in: path
+        description: Employer ID
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Get an employer
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Employer'
+    patch:
+      tags:
+      - Employers
+      summary: Update an employer
+      description: Update an employer
+      operationId: patchEmployersEmployerId
+      parameters:
+      - name: employer_id
+        in: path
+        description: Employer ID
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/patchEmployersEmployerId'
+        required: true
+      responses:
+        '200':
+          description: Update an employer
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Employer'
+      x-codegen-request-body-name: patchEmployersEmployerId
+components:
+  schemas:
+    Employer:
+      required:
+      - address_line1
+      - business_type
+      - city
+      - ein
+      - id
+      - lifecycle_events
+      - metadata
+      - name
+      - pay_schedules
+      - state
+      - zip
+      type: object
+      properties:
+        id:
+          type: string
+          description: The employer's unique identifier
+          example: empl_01j2j3smtwx656y2tbqm7ty6gr
+        onboarding_status:
+          type: string
+          description: The employer's onboarding status as an employer lifecycle event
+          example: employees_invited
+          enum:
+          - onboarding_launched
+          - quote_created
+          - quote_finalized
+          - payroll_connected
+          - bank_account_connected
+          - employees_invited
+        name:
+          type: string
+          description: The employer's legal business name
+          example: Acme Corp
+        business_type:
+          type: string
+          description: The employer's business type
+          example: c_corp
+          enum:
+          - c_corp
+          - s_corp
+          - llc
+          - llp
+          - partnership
+          - sole_proprietorship
+          - non_profit
+        ein:
+          type: string
+          description: The employer's EIN (employer identification number)
+          example: 12-3456789
+        dba:
+          type: string
+          description: The employer's DBA (doing business as) name, if different from the employer's legal business name
+          nullable: true
+        address_line1:
+          type: string
+          description: The employer's address (line 1)
+          example: 123 Main St
+        address_line2:
+          type: string
+          description: The employer's address (line 2)
+          nullable: true
+        city:
+          type: string
+          description: The employer's city
+          example: San Francisco
+        state:
+          type: string
+          description: The employer's state
+          example: CA
+          enum:
+          - AK
+          - AL
+          - AR
+          - AZ
+          - CA
+          - CO
+          - CT
+          - DC
+          - DE
+          - FL
+          - GA
+          - HI
+          - IA
+          - ID
+          - IL
+          - IN
+          - KS
+          - KY
+          - LA
+          - MA
+          - MD
+          - ME
+          - MI
+          - MN
+          - MO
+          - MS
+          - MT
+          - NC
+          - ND
+          - NE
+          - NH
+          - NJ
+          - NM
+          - NV
+          - NY
+          - OH
+          - OK
+          - OR
+          - PA
+          - RI
+          - SC
+          - SD
+          - TN
+          - TX
+          - UT
+          - VA
+          - VT
+          - WA
+          - WI
+          - WV
+          - WY
+        zip:
+          type: string
+          description: The employer's ZIP code, with optional +4
+          example: '94108'
+        phone_number:
+          type: string
+          description: The employer's phone number
+          nullable: true
+          example: '+14152370005'
+        industry:
+          type: string
+          description: The employer's industry
+          nullable: true
+          example: professional_scientific_and_technical_services
+          enum:
+          - accommodation_and_food_services
+          - administrative_and_support_and_waste_management_services
+          - agriculture_forestry_fishing_and_hunting
+          - arts_entertainment_and_recreation
+          - construction
+          - educational_services
+          - finance_and_insurance
+          - health_care_and_social_assistance
+          - information_and_technology
+          - management_of_companies_and_enterprises
+          - manufacturing
+          - mining_quarrying_and_oil_and_gas_extraction
+          - other_services_except_public_administration
+          - professional_scientific_and_technical_services
+          - public_administration
+          - real_estate_and_rental_and_leasing
+          - retail_trade
+          - transportation_and_warehousing
+          - utilities
+          - wholesale_trade
+          - other
+        lifecycle_events:
+          type: array
+          description: The employer's lifecycle events, ordered from oldest to newest
+          items:
+            $ref: '#/components/schemas/EmployerLifecycleEvent'
+        pay_schedules:
+          type: array
+          description: The employer's pay schedules
+          items:
+            $ref: '#/components/schemas/PaySchedule'
+        pricing:
+          type: object
+          description: The employer's pricing
+          allOf:
+          - $ref: '#/components/schemas/Pricing'
+        metadata:
+          type: object
+          properties: {}
+          description: Set of key-value pairs that you can attach to an API resource. This can be useful for storing additional information about the resource in a structured format.
+          nullable: false
+          example:
+            key: value
+      description: Employer model
+    PaginatedEmployerList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Employer'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+      description: PaginatedEmployerList model
+    PaySchedule:
+      required:
+      - active
+      - bank_closure_strategy
+      - frequency
+      - id
+      - name
+      - start_date
+      type: object
+      properties:
+        id:
+          type: string
+          description: Pay schedule ID
+          example: paysch_1234
+        name:
+          type: string
+          description: Pay schedule name
+          example: Bi-Weekly Payroll
+        reference_pay_date:
+          type: string
+          description: Reference pay date for weekly/bi-weekly schedules
+          format: date
+          nullable: true
+          example: '2024-01-01'
+        start_date:
+          type: string
+          description: Pay schedule start date
+          format: date
+          example: '2024-01-01'
+        end_date:
+          type: string
+          description: Pay schedule end date
+          format: date
+          nullable: true
+          example: '2024-12-31'
+        frequency:
+          type: string
+          description: Pay schedule frequency
+          example: bi_weekly
+          enum:
+          - monthly
+          - semi_monthly
+          - bi_weekly
+          - weekly
+        first_day:
+          type: integer
+          description: First pay day of the month (1-31, required for monthly/semi-monthly)
+          format: int32
+          nullable: true
+          example: 15
+        second_day:
+          type: integer
+          description: Second pay day of the month (1-31, required for semi-monthly)
+          format: int32
+          nullable: true
+          example: 30
+        bank_closure_strategy:
+          type: string
+          description: Strategy for handling bank closures (before/after/closest/ignore)
+          example: before
+          enum:
+          - before
+          - after
+          - closest
+          - ignore
+        remote_id:
+          type: string
+          description: Remote ID from payroll integration
+          nullable: true
+          example: remote_123
+        active:
+          type: boolean
+          description: Whether the pay schedule is active
+          example: true
+      description: PaySchedule model
+    patchEmployersEmployerId:
+      type: object
+      properties:
+        offers_health_insurance_today:
+          type: boolean
+          description: Whether the employer offers health insurance today
+          example: true
+        current_health_insurance:
+          type: object
+          properties:
+            individual_deductible:
+              type: integer
+              description: The individual deductible for the health insurance plan
+              format: int32
+              example: 1500
+            individual_oop_max:
+              type: integer
+              description: The individual out-of-pocket maximum for the health insurance plan
+              format: int32
+              example: 5000
+            network_type:
+              type: string
+              description: The network type for the health insurance plan (HMO, PPO, ...)
+              example: hmo
+              enum:
+              - hmo
+              - ppo
+              - epo
+              - pos
+            metal_tier:
+              type: string
+              description: The metal tier for the health insurance plan (bronze, silver, gold...)
+              example: silver
+              enum:
+              - catastrophic
+              - bronze
+              - expanded_bronze
+              - silver
+              - gold
+              - platinum
+          description: Current health insurance plan details
+          example:
+            individual_deductible: 1500
+            individual_oop_max: 5000
+            network_type: hmo
+            metal_tier: silver
+        coverage_start_date:
+          type: string
+          description: The desired start date for the employer's new health insurance coverage
+          format: date
+          example: '2027-01-01'
+        pricing:
+          type: object
+          properties:
+            platform_fee:
+              type: object
+              properties:
+                amount:
+                  type: number
+                  description: The amount of the platform fee in cents
+                  format: float
+                  example: 4500
+                currency_code:
+                  type: string
+                  description: The currency of the platform fee
+                  example: USD
+                  enum:
+                  - USD
+              description: The platform fee for the employer
+              example:
+                amount: 4500
+                currency_code: USD
+          description: The monthly pricing for the employer. Must be greater than the expected commission.
+          example:
+            platform_fee:
+              amount: 4500
+              currency_code: USD
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+          description: Set of key-value pairs that you can attach to an API resource. This can be useful for storing additional information about the resource in a structured format. Individual keys can be unset by posting an empty string value (`""`) to them. All keys can be unset by posting an empty object value (`{}`) to `metadata`.
+          example:
+            key: value
+      description: Update an employer
+    postEmployers:
+      required:
+      - address_line1
+      - business_type
+      - city
+      - ein
+      - email
+      - name
+      - state
+      - zip
+      type: object
+      properties:
+        email:
+          type: string
+          description: Email address for the employer's administrator
+          example: admin@employer.test
+        name:
+          type: string
+          description: Employer's legal business name
+          example: Acme Corp
+        business_type:
+          type: string
+          description: Employer's business type
+          example: c_corp
+          enum:
+          - c_corp
+          - s_corp
+          - llc
+          - llp
+          - partnership
+          - sole_proprietorship
+          - non_profit
+        ein:
+          type: string
+          description: Employer's EIN (Employer Identification Number)
+          example: 12-3456789
+        dba:
+          type: string
+          description: Employer's DBA (Doing Business As) name, if different from the employer's legal business name
+          example: ''
+        industry_code:
+          type: string
+          description: 'Employer''s industry NAICS code (2-6 digits). Valid prefixes are: 11, 21, 22, 23, 31, 32, 33, 42, 44, 45, 48, 49, 51, 52, 53, 54, 55, 56, 61, 62, 71, 72, 81, 92'
+          example: '111110'
+        address_line1:
+          type: string
+          description: Employer's address (line 1)
+          example: 123 Main St
+        address_line2:
+          type: string
+          description: Employer's address (line 2)
+          example: ''
+        city:
+          type: string
+          description: Employer's city
+          example: San Francisco
+        state:
+          type: string
+          description: Employer's state
+          example: CA
+          enum:
+          - AK
+          - AL
+          - AR
+          - AZ
+          - CA
+          - CO
+          - CT
+          - DC
+          - DE
+          - FL
+          - GA
+          - HI
+          - IA
+          - ID
+          - IL
+          - IN
+          - KS
+          - KY
+          - LA
+          - MA
+          - MD
+          - ME
+          - MI
+          - MN
+          - MO
+          - MS
+          - MT
+          - NC
+          - ND
+          - NE
+          - NH
+          - NJ
+          - NM
+          - NV
+          - NY
+          - OH
+          - OK
+          - OR
+          - PA
+          - RI
+          - SC
+          - SD
+          - TN
+          - TX
+          - UT
+          - VA
+          - VT
+          - WA
+          - WI
+          - WV
+          - WY
+        zip:
+          type: string
+          description: Employer's ZIP code, with optional +4
+          example: '94108'
+        phone_number:
+          type: string
+          description: Employer's phone number
+          example: 415-555-1212
+        first_name:
+          type: string
+          description: First name of the employer administrator
+          example: Jane
+        last_name:
+          type: string
+          description: Last name of the employer administrator
+          example: Smith
+        offers_health_insurance_today:
+          type: boolean
+          description: Whether the employer offers health insurance today
+          example: true
+        current_health_insurance:
+          type: object
+          properties:
+            individual_deductible:
+              type: integer
+              description: The individual deductible for the health insurance plan
+              format: int32
+              example: 1500
+            individual_oop_max:
+              type: integer
+              description: The individual out-of-pocket maximum for the health insurance plan
+              format: int32
+              example: 5000
+            network_type:
+              type: string
+              description: The network type for the health insurance plan (HMO, PPO, ...)
+              example: hmo
+              enum:
+              - hmo
+              - ppo
+              - epo
+              - pos
+            metal_tier:
+              type: string
+              description: The metal tier for the health insurance plan (bronze, silver, gold...)
+              example: silver
+              enum:
+              - catastrophic
+              - bronze
+              - expanded_bronze
+              - silver
+              - gold
+              - platinum
+          description: Current health insurance plan details
+          example:
+            individual_deductible: 1500
+            individual_oop_max: 5000
+            network_type: hmo
+            metal_tier: silver
+        coverage_start_date:
+          type: string
+          description: The desired start date for the employer's new health insurance coverage
+          format: date
+          example: '2027-01-01'
+        pricing:
+          type: object
+          properties:
+            platform_fee:
+              type: object
+              properties:
+                amount:
+                  type: number
+                  description: The amount of the platform fee in cents
+                  format: float
+                  example: 4500
+                currency_code:
+                  type: string
+                  description: The currency of the platform fee
+                  example: USD
+                  enum:
+                  - USD
+              description: The platform fee for the employer
+              example:
+                amount: 4500
+                currency_code: USD
+          description: The monthly pricing for the employer. Must be greater than the expected commission.
+          example:
+            platform_fee:
+              amount: 4500
+              currency_code: USD
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+          description: Set of key-value pairs that you can attach to an API resource. This can be useful for storing additional information about the resource in a structured format. Individual keys can be unset by posting an empty string value (`""`) to them. All keys can be unset by posting an empty object value (`{}`) to `metadata`.
+          example:
+            key: value
+      description: Create an employer
+    Money:
+      required:
+      - amount
+      - currency_code
+      type: object
+      properties:
+        amount:
+          type: integer
+          description: Amount as an integer in the smallest currency unit (e.g. 100 cents for $1.00)
+          format: int32
+          example: 1099
+        currency_code:
+          type: string
+          description: Three-letter ISO currency code
+          example: USD
+    Pricing:
+      type: object
+      properties:
+        platform_fee:
+          type: object
+          description: The employer's platform fee
+          example:
+            amount: 4500
+            currency_code: USD
+          allOf:
+          - $ref: '#/components/schemas/Money'
+    EmployerLifecycleEvent:
+      required:
+      - event_type
+      - id
+      - timestamp
+      type: object
+      properties:
+        id:
+          type: string
+          description: The lifecycle event's unique identifier
+          example: lcevent_01j2j3smtwx656y2tbqm7ty6gr
+        event_type:
+          type: string
+          description: The type of lifecycle event
+          example: employees_invited
+          enum:
+          - onboarding_launched
+          - quote_created
+          - quote_viewed
+          - quote_finalized
+          - payroll_connected
+          - bank_account_connected
+          - employees_invited
+          - employer_renewed
+          - employer_churned
+          - first_employee_signed_up
+          - first_employee_plan_selected
+          - initial_enrollment_period_completed
+        timestamp:
+          type: string
+          description: The ISO 8601 date and time the lifecycle event occurred
+          example: '2024-11-01T00:00:00Z'
+    Pagination:
+      required:
+      - current_page
+      - next_page
+      - prev_page
+      - total_pages
+      - total_records
+      type: object
+      properties:
+        total_records:
+          type: integer
+          description: Total number of records
+          format: int32
+          example: 25
+        current_page:
+          type: integer
+          description: Current page number
+          format: int32
+          example: 1
+        total_pages:
+          type: integer
+          description: Total number of pages
+          format: int32
+          example: 3
+        next_page:
+          type: integer
+          description: Next page number
+          format: int32
+          nullable: true
+          example: 2
+        prev_page:
+          type: integer
+          description: Previous page number
+          format: int32
+          nullable: true
+  securitySchemes:
+    Bearer:
+      type: apiKey
+      description: Provide your API key in a `Bearer` token header (as in, **Bearer sk_123**).
+      name: Authorization
+      in: header
+x-original-swagger-version: '2.0'

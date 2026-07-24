@@ -1,0 +1,103 @@
+openapi: 3.0.1
+info:
+  title: Thatch for Platforms Deductions Employer onboarding sessions API
+  description: '<p><a href="https://thatch.com/platforms">Thatch for Platforms</a> is a set of APIs and
+
+    embeddable components, enabling you to effortlessly bring ICHRA (Individual Coverage Health
+
+    Reimbursement Arrangement) benefits to your customers.</p><p>Thatch for Platforms is only
+
+    available to specific partners. Get in touch with us at
+
+    <a href="mailto:platforms@thatch.com">platforms@thatch.com</a> to set up an account.</p>
+
+    '
+  version: ''
+servers:
+- url: //partners.thatchcloud.com/api/partners/v1/
+security:
+- Bearer: []
+tags:
+- name: Employer onboarding sessions
+  description: 'Employers onboard into a platform through
+
+    employer onboarding sessions. After creating a session, provide the `claim_url` to the
+
+    onboarding iframe in your app.
+
+    '
+paths:
+  /employer_onboarding_sessions:
+    post:
+      tags:
+      - Employer onboarding sessions
+      summary: Create an employer onboarding session
+      description: Create an employer onboarding session
+      operationId: postEmployerOnboardingSessions
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/postEmployerOnboardingSessions'
+        required: true
+      responses:
+        '201':
+          description: Create an employer onboarding session
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmployerOnboardingSession'
+      x-codegen-request-body-name: postEmployerOnboardingSessions
+components:
+  schemas:
+    EmployerOnboardingSession:
+      required:
+      - claim_url
+      - employer
+      - expires_at
+      type: object
+      properties:
+        employer:
+          type: string
+          description: The employer's unique identifier
+          example: empl_01j2j3smtwx656y2tbqm7ty6gr
+        employer_admin_email:
+          type: string
+          description: The email address of the employer admin that the session is for
+          example: admin@example.com
+        claim_url:
+          type: string
+          description: The URL that should be wrapped in an iframe for the employer onboarding flow
+          example: https://app.thatch.com/employer_onboarding_sessions/SR86rPsHKWp02FivyQ6Z4hgUN0VBz6RR/claim
+        expires_at:
+          type: string
+          description: The time at which this session will expire (in ISO 8601 format)
+          format: date-time
+          example: '2024-09-11T12:50:46Z'
+      description: EmployerOnboardingSession model
+    postEmployerOnboardingSessions:
+      required:
+      - employer
+      type: object
+      properties:
+        employer:
+          type: string
+          description: ID of the employer to create an onboarding session for
+          example: empl_01j2j3smtwx656y2tbqm7ty6gr
+        email:
+          type: string
+          description: Email address of the admin to create the session for. When provided, a User and EmployerAdmin are created (or found) for this email.
+        first_name:
+          type: string
+          description: First name of the admin (used when creating a new EmployerAdmin via email)
+        last_name:
+          type: string
+          description: Last name of the admin (used when creating a new EmployerAdmin via email)
+      description: Create an employer onboarding session
+  securitySchemes:
+    Bearer:
+      type: apiKey
+      description: Provide your API key in a `Bearer` token header (as in, **Bearer sk_123**).
+      name: Authorization
+      in: header
+x-original-swagger-version: '2.0'

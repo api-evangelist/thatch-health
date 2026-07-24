@@ -1,0 +1,271 @@
+openapi: 3.0.1
+info:
+  title: Thatch for Platforms Deductions Members API
+  description: '<p><a href="https://thatch.com/platforms">Thatch for Platforms</a> is a set of APIs and
+
+    embeddable components, enabling you to effortlessly bring ICHRA (Individual Coverage Health
+
+    Reimbursement Arrangement) benefits to your customers.</p><p>Thatch for Platforms is only
+
+    available to specific partners. Get in touch with us at
+
+    <a href="mailto:platforms@thatch.com">platforms@thatch.com</a> to set up an account.</p>
+
+    '
+  version: ''
+servers:
+- url: //partners.thatchcloud.com/api/partners/v1/
+security:
+- Bearer: []
+tags:
+- name: Members
+  description: 'Members represent employees enrolled in plans. Thatch creates member
+
+    objects automatically, but you can retrieve them (for example, to aid in supporting an enrolled employee.
+
+    '
+paths:
+  /members:
+    get:
+      tags:
+      - Members
+      summary: List members
+      description: List members
+      operationId: getMembers
+      parameters:
+      - name: page[number]
+        in: query
+        description: Page number
+        schema:
+          minimum: 1
+          type: integer
+          format: int32
+          default: 1
+      - name: page[size]
+        in: query
+        description: Number of items per page. Must be between 1 and 1,000 (inclusive). Defaults to 20.
+        schema:
+          maximum: 1000
+          minimum: 1
+          type: integer
+          format: int32
+          default: 20
+      responses:
+        '200':
+          description: List members
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedMemberList'
+  /members/{id}:
+    get:
+      tags:
+      - Members
+      summary: Get a member
+      description: Get a member
+      operationId: getMembersId
+      parameters:
+      - name: id
+        in: path
+        description: Member ID
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Get a member
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Member'
+components:
+  schemas:
+    Member:
+      required:
+      - address_line1
+      - city
+      - date_of_birth
+      - employee_id
+      - first_name
+      - id
+      - last_name
+      - state
+      - zip
+      type: object
+      properties:
+        id:
+          type: string
+          description: The member's unique identifier
+          example: mbr_01j85kpd8yxkabyrm83d3h2ya3
+        employee_id:
+          type: string
+          description: The unique identifier for the employee associated with the member
+          example: employee_01j7h53r7gpd0q0wtx4pcfcska
+        first_name:
+          type: string
+          description: The member's first name
+          example: Ana
+        last_name:
+          type: string
+          description: The member's last name
+          example: Diaz
+        address_line1:
+          type: string
+          description: The member's address (line 1)
+          example: 123 Main St
+        address_line2:
+          type: string
+          description: The member's address (line 2)
+        city:
+          type: string
+          description: The member's city
+          example: San Francisco
+        state:
+          type: string
+          description: The member's state
+          example: CA
+          enum:
+          - AK
+          - AL
+          - AR
+          - AZ
+          - CA
+          - CO
+          - CT
+          - DC
+          - DE
+          - FL
+          - GA
+          - HI
+          - IA
+          - ID
+          - IL
+          - IN
+          - KS
+          - KY
+          - LA
+          - MA
+          - MD
+          - ME
+          - MI
+          - MN
+          - MO
+          - MS
+          - MT
+          - NC
+          - ND
+          - NE
+          - NH
+          - NJ
+          - NM
+          - NV
+          - NY
+          - OH
+          - OK
+          - OR
+          - PA
+          - RI
+          - SC
+          - SD
+          - TN
+          - TX
+          - UT
+          - VA
+          - VT
+          - WA
+          - WI
+          - WV
+          - WY
+        zip:
+          type: string
+          description: The member's ZIP code, with optional +4
+          example: '94108'
+        date_of_birth:
+          type: string
+          description: The member's date of birth in YYYY-MM-DD format
+          format: date
+          example: '1989-07-15'
+        allowance:
+          type: object
+          description: The member's current ICHRA allowance
+          example:
+            amount: 65000
+            currency_code: USD
+          allOf:
+          - $ref: '#/components/schemas/Money'
+        balance:
+          type: object
+          description: The member's current ICHRA account balance
+          example:
+            amount: 4500
+            currency_code: USD
+          allOf:
+          - $ref: '#/components/schemas/Money'
+      description: Member model
+    PaginatedMemberList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Member'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+      description: PaginatedMemberList model
+    Money:
+      required:
+      - amount
+      - currency_code
+      type: object
+      properties:
+        amount:
+          type: integer
+          description: Amount as an integer in the smallest currency unit (e.g. 100 cents for $1.00)
+          format: int32
+          example: 1099
+        currency_code:
+          type: string
+          description: Three-letter ISO currency code
+          example: USD
+    Pagination:
+      required:
+      - current_page
+      - next_page
+      - prev_page
+      - total_pages
+      - total_records
+      type: object
+      properties:
+        total_records:
+          type: integer
+          description: Total number of records
+          format: int32
+          example: 25
+        current_page:
+          type: integer
+          description: Current page number
+          format: int32
+          example: 1
+        total_pages:
+          type: integer
+          description: Total number of pages
+          format: int32
+          example: 3
+        next_page:
+          type: integer
+          description: Next page number
+          format: int32
+          nullable: true
+          example: 2
+        prev_page:
+          type: integer
+          description: Previous page number
+          format: int32
+          nullable: true
+  securitySchemes:
+    Bearer:
+      type: apiKey
+      description: Provide your API key in a `Bearer` token header (as in, **Bearer sk_123**).
+      name: Authorization
+      in: header
+x-original-swagger-version: '2.0'

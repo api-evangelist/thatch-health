@@ -1,0 +1,565 @@
+openapi: 3.0.1
+info:
+  title: Thatch for Platforms Deductions Employees API
+  description: '<p><a href="https://thatch.com/platforms">Thatch for Platforms</a> is a set of APIs and
+
+    embeddable components, enabling you to effortlessly bring ICHRA (Individual Coverage Health
+
+    Reimbursement Arrangement) benefits to your customers.</p><p>Thatch for Platforms is only
+
+    available to specific partners. Get in touch with us at
+
+    <a href="mailto:platforms@thatch.com">platforms@thatch.com</a> to set up an account.</p>
+
+    '
+  version: ''
+servers:
+- url: //partners.thatchcloud.com/api/partners/v1/
+security:
+- Bearer: []
+tags:
+- name: Employees
+  description: 'Employees work for employers, both of which are managed
+
+    by partners. Employees enrolled in plans are also represented in Thatch as member objects.
+
+    '
+paths:
+  /employees:
+    get:
+      tags:
+      - Employees
+      summary: List employees
+      description: List employees
+      operationId: getEmployees
+      parameters:
+      - name: employer_id
+        in: query
+        description: ID of the employee's employer
+        schema:
+          type: string
+      - name: page[number]
+        in: query
+        description: Page number
+        schema:
+          minimum: 1
+          type: integer
+          format: int32
+          default: 1
+      - name: page[size]
+        in: query
+        description: Number of items per page. Must be between 1 and 1,000 (inclusive). Defaults to 20.
+        schema:
+          maximum: 1000
+          minimum: 1
+          type: integer
+          format: int32
+          default: 20
+      responses:
+        '200':
+          description: List employees
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedEmployeeList'
+    post:
+      tags:
+      - Employees
+      summary: Create an employee
+      description: Create an employee
+      operationId: postEmployees
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/postEmployees'
+        required: true
+      responses:
+        '201':
+          description: Create an employee
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Employee'
+      x-codegen-request-body-name: postEmployees
+  /employees/{id}:
+    get:
+      tags:
+      - Employees
+      summary: Get an employee
+      description: Get an employee
+      operationId: getEmployeesId
+      parameters:
+      - name: id
+        in: path
+        description: Employee ID
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Get an employee
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Employee'
+    patch:
+      tags:
+      - Employees
+      summary: Update an employee
+      description: Update an employee
+      operationId: patchEmployeesId
+      parameters:
+      - name: id
+        in: path
+        description: Employee ID
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/patchEmployeesId'
+        required: true
+      responses:
+        '200':
+          description: Update an employee
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Employee'
+      x-codegen-request-body-name: patchEmployeesId
+components:
+  schemas:
+    EmployeePaySchedule:
+      required:
+      - id
+      - start_date
+      type: object
+      properties:
+        id:
+          type: string
+          description: The id of the assigned pay schedule
+          example: paysch_01k8ceyhq89b9c1nz141cca88f
+        start_date:
+          type: string
+          description: Start date of the employee's assignment to this pay schedule in YYYY-MM-DD format
+          format: date
+          example: '2024-01-01'
+        end_date:
+          type: string
+          description: End date of the employee's assignment to this pay schedule in YYYY-MM-DD format
+          format: date
+          example: '2024-12-31'
+    patchEmployeesId:
+      type: object
+      properties:
+        personal_email:
+          type: string
+          description: Employee's personal email address
+        work_email:
+          type: string
+          description: Employee's work email address
+        first_name:
+          type: string
+          description: Employee's first name
+        last_name:
+          type: string
+          description: Employee's last name
+        employment_subtype:
+          type: string
+          description: Employee's employment subtype
+          enum:
+          - part_time
+          - full_time
+        pay_type:
+          type: string
+          description: Employee's pay type
+          enum:
+          - yearly
+          - quarterly
+          - monthly
+          - semi_monthly
+          - bi_weekly
+          - weekly
+          - daily
+          - hourly
+          - fixed
+          - salary
+        pay_rate:
+          type: number
+          description: Pay rate in case the employee is paid hourly
+          format: float
+        start_date:
+          type: string
+          description: Employee's start date in YYYY-MM-DD format
+          format: date
+        end_date:
+          type: string
+          description: Employee's end date in YYYY-MM-DD format
+          format: date
+        date_of_birth:
+          type: string
+          description: Employee's date of birth in YYYY-MM-DD format
+          format: date
+        zip:
+          type: string
+          description: Employee's five-digit ZIP code
+          example: '90210'
+        dependents:
+          type: array
+          items:
+            required:
+            - date_of_birth
+            - relationship
+            type: object
+            properties:
+              relationship:
+                type: string
+                description: Dependent relationship, spouse or child
+                enum:
+                - spouse
+                - child
+              date_of_birth:
+                type: string
+                description: Dependent's date of birth in YYYY-MM-DD format
+                format: date
+        pay_schedules:
+          type: array
+          description: Employee's assigned pay schedules
+          items:
+            required:
+            - id
+            - start_date
+            type: object
+            properties:
+              id:
+                type: string
+                description: ID of the employee's assigned pay schedule
+              start_date:
+                type: string
+                description: Start date of employee's assignment to this pay schedule in YYYY-MM-DD format
+                format: date
+              end_date:
+                type: string
+                description: End date of employee's assignment to this pay schedule in YYYY-MM-DD format
+                format: date
+        native_employee_id:
+          type: string
+          description: Employee's identifier in the partner's payroll system. Used for deduplication when employees are created via census upload and later via API.
+          example: EMP-12345
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+          description: Set of key-value pairs that you can attach to an API resource. This can be useful for storing additional information about the resource in a structured format. Individual keys can be unset by posting an empty string value (`""`) to them. All keys can be unset by posting an empty object value (`{}`) to `metadata`.
+          example:
+            key: value
+      description: Update an employee
+    Dependent:
+      required:
+      - date_of_birth
+      - relationship
+      type: object
+      properties:
+        relationship:
+          type: string
+          description: Relationship of the dependent to the prospect employee - has to be spouse or child
+          example: spouse
+        date_of_birth:
+          type: string
+          description: Date of birth of the dependent in YYYY-MM-DD format
+          format: date
+          example: '2012-04-04'
+    EnrollmentEvent:
+      required:
+      - end_date
+      - plan_year
+      - start_date
+      - status
+      - type
+      type: object
+      properties:
+        type:
+          type: string
+          description: The enrollment event type
+          example: open_enrollment
+          enum:
+          - ichra_invite
+          - open_enrollment
+          - special_enrollment
+        subtype:
+          type: string
+          description: The enrollment event subtype
+          example: renewal
+        plan_year:
+          type: integer
+          description: The enrollment event's plan year
+          format: int32
+          example: 2024
+        start_date:
+          type: string
+          description: Start date of the enrollment period, inclusive
+          example: '2024-11-01'
+        end_date:
+          type: string
+          description: End date of the enrollment period, inclusive
+          example: '2024-11-30'
+        status:
+          type: string
+          description: The enrollment event's status
+          example: active
+          enum:
+          - active
+          - in_progress
+          - completed
+          - inactive
+    postEmployees:
+      required:
+      - employer_id
+      - first_name
+      - last_name
+      - date_of_birth
+      - zip
+      type: object
+      properties:
+        personal_email:
+          type: string
+          description: Employee's personal email address
+        work_email:
+          type: string
+          description: Employee's work email address
+        employer_id:
+          type: string
+          description: Employer ID
+        first_name:
+          type: string
+          description: Employee's first name
+        last_name:
+          type: string
+          description: Employee's last name
+        employment_subtype:
+          type: string
+          description: Employee's employment subtype
+          enum:
+          - part_time
+          - full_time
+        pay_type:
+          type: string
+          description: Employee's pay type
+          enum:
+          - yearly
+          - quarterly
+          - monthly
+          - semi_monthly
+          - bi_weekly
+          - weekly
+          - daily
+          - hourly
+          - fixed
+          - salary
+        pay_rate:
+          type: number
+          description: Pay rate in case the employee is paid hourly
+          format: float
+        start_date:
+          type: string
+          description: Employee's start date in YYYY-MM-DD format
+          format: date
+        end_date:
+          type: string
+          description: Employee's end date in YYYY-MM-DD format
+          format: date
+        date_of_birth:
+          type: string
+          description: Employee's date of birth in YYYY-MM-DD format
+          format: date
+        zip:
+          type: string
+          description: Employee's five-digit ZIP code
+          example: '90210'
+        dependents:
+          type: array
+          items:
+            required:
+            - date_of_birth
+            - relationship
+            type: object
+            properties:
+              relationship:
+                type: string
+                description: Dependent relationship, spouse or child
+                enum:
+                - spouse
+                - child
+              date_of_birth:
+                type: string
+                description: Dependent's date of birth in YYYY-MM-DD format
+                format: date
+        pay_schedules:
+          type: array
+          description: Employee's assigned pay schedules
+          items:
+            required:
+            - id
+            - start_date
+            type: object
+            properties:
+              id:
+                type: string
+                description: ID of the employee's assigned pay schedule
+              start_date:
+                type: string
+                description: Start date of employee's assignment to this pay schedule in YYYY-MM-DD format
+                format: date
+              end_date:
+                type: string
+                description: End date of employee's assignment to this pay schedule in YYYY-MM-DD format
+                format: date
+        native_employee_id:
+          type: string
+          description: Employee's identifier in the partner's payroll system. Used for deduplication when employees are created via census upload and later via API.
+          example: EMP-12345
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+          description: Set of key-value pairs that you can attach to an API resource. This can be useful for storing additional information about the resource in a structured format. Individual keys can be unset by posting an empty string value (`""`) to them. All keys can be unset by posting an empty object value (`{}`) to `metadata`.
+          example:
+            key: value
+      description: Create an employee
+    PaginatedEmployeeList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Employee'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+      description: PaginatedEmployeeList model
+    Employee:
+      required:
+      - dependents
+      - employer_id
+      - first_name
+      - id
+      - last_name
+      - metadata
+      - zip
+      type: object
+      properties:
+        id:
+          type: string
+          description: The employee's unique identifier
+          example: employee_01j85kpd8yxkabyrm83d3h2ya3
+        employer_id:
+          type: string
+          description: The identifier of the employer associated with the employee
+          example: empl_01j2j3smtwx656y2tbqm7ty6gr
+        personal_email:
+          type: string
+          description: The employee's personal email address. Unavailable if partner issues policies
+          example: ana.diaz@gmail.test
+        work_email:
+          type: string
+          description: The employee's work email address. Unavailable if partner issues policies
+          example: ana.diaz@acme.test
+        first_name:
+          type: string
+          description: The employee's first name
+          example: Ana
+        last_name:
+          type: string
+          description: The employee's last name
+          example: Diaz
+        enrollment_events:
+          type: array
+          description: The employee's enrollment events. Each enrollment event represents a separate opportunity for the employee to enroll in benefits.
+          items:
+            $ref: '#/components/schemas/EnrollmentEvent'
+        pay_schedules:
+          type: array
+          description: The employee's pay schedule assignments
+          items:
+            $ref: '#/components/schemas/EmployeePaySchedule'
+        member_id:
+          type: string
+          description: The identifier of the member associated with the employee, created when the employee enrolls in benefits
+          example: mbr_01j85kpd8yxkabyrm83d3h2ya3
+        invite_link:
+          type: string
+          description: The invite link for the employee, only present if the employee has been invited, has not signed up, and has an active enrollment event
+          example: https://app.thatch.com/member/onboarding/welcome?invite_token=abc123
+        date_of_birth:
+          type: string
+          description: The employee's date of birth in YYYY-MM-DD format
+          format: date
+          example: '1989-07-15'
+        zip:
+          type: string
+          description: The employee's five-digit ZIP code
+          example: '94103'
+        dependents:
+          type: array
+          description: 'Dependents of the employee. Each entry contains relationship: spouse or child, and date of birth: MM-DD-YYYY string format.'
+          example:
+          - relationship: spouse
+            date_of_birth: '2012-04-04'
+          items:
+            $ref: '#/components/schemas/Dependent'
+        native_employee_id:
+          type: string
+          description: The employee's identifier in the partner's payroll system. Used for deduplication when employees are created via census upload and later via API.
+          example: EMP-12345
+        metadata:
+          type: object
+          properties: {}
+          description: Set of key-value pairs that you can attach to an API resource. This can be useful for storing additional information about the resource in a structured format.
+          nullable: false
+          example:
+            key: value
+      description: Employee model
+    Pagination:
+      required:
+      - current_page
+      - next_page
+      - prev_page
+      - total_pages
+      - total_records
+      type: object
+      properties:
+        total_records:
+          type: integer
+          description: Total number of records
+          format: int32
+          example: 25
+        current_page:
+          type: integer
+          description: Current page number
+          format: int32
+          example: 1
+        total_pages:
+          type: integer
+          description: Total number of pages
+          format: int32
+          example: 3
+        next_page:
+          type: integer
+          description: Next page number
+          format: int32
+          nullable: true
+          example: 2
+        prev_page:
+          type: integer
+          description: Previous page number
+          format: int32
+          nullable: true
+  securitySchemes:
+    Bearer:
+      type: apiKey
+      description: Provide your API key in a `Bearer` token header (as in, **Bearer sk_123**).
+      name: Authorization
+      in: header
+x-original-swagger-version: '2.0'
