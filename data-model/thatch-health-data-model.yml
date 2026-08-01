@@ -1,0 +1,95 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/thatch-health-platforms-openapi-original.yml
+entities:
+- name: Employer
+  id_prefix: empl_
+  description: A company onboarded into Thatch by a partner platform; carries EIN,
+    address, industry, pricing, lifecycle events, and pay schedules.
+- name: Employee
+  id_prefix: employee_
+  description: A worker belonging to an employer; carries emails, DOB, ZIP, dependents,
+    enrollment events, assigned pay schedules, and an optional native_employee_id
+    from the partner's payroll system.
+- name: Dependent
+  description: An employee's dependent (relationship + date_of_birth), embedded on
+    Employee.
+- name: EmployerOnboardingSession
+  description: Secure short-lived session whose claim_url is embedded as the employer
+    onboarding iframe.
+- name: PaySchedule
+  description: Cadence of employee paychecks for deduction calculations (frequency,
+    reference pay date, bank closure strategy).
+- name: EmployeeDeduction
+  description: Monthly payroll deductions per employee, grouped in DeductionPeriods
+    with Money amounts and deduction type (e.g. s125_pretax).
+- name: Enrollment
+  description: A member's health-plan enrollment with status events, plan, premium,
+    broker, and per-person enrollment coverages.
+- name: Member
+  description: An enrolled person (linked to an employee) with allowance and balance
+    Money amounts.
+- name: MedicalPlan
+  description: Health plan (carrier, HSA eligibility, SBC document URL) attached to
+    an enrollment.
+- name: Broker
+  description: Insurance broker (name, NPN) attached to an enrollment.
+relationships:
+- from: Employer
+  to: Employee
+  type: has_many
+  via: Employee.employer_id
+- from: Employer
+  to: PaySchedule
+  type: has_many
+  via: Employer.pay_schedules
+- from: Employer
+  to: EmployerLifecycleEvent
+  type: has_many
+  via: Employer.lifecycle_events
+- from: Employer
+  to: EmployerOnboardingSession
+  type: has_many
+  via: EmployerOnboardingSession.employer
+- from: Employee
+  to: Dependent
+  type: has_many
+  via: Employee.dependents
+- from: Employee
+  to: EnrollmentEvent
+  type: has_many
+  via: Employee.enrollment_events
+- from: Employee
+  to: EmployeePaySchedule
+  type: has_many
+  via: Employee.pay_schedules
+- from: Employee
+  to: Member
+  type: has_one
+  via: Employee.member_id
+- from: Member
+  to: Employee
+  type: belongs_to
+  via: Member.employee_id
+- from: Member
+  to: Enrollment
+  type: has_many
+  via: Enrollment.member_id
+- from: Enrollment
+  to: MedicalPlan
+  type: has_one
+  via: Enrollment.plan
+- from: Enrollment
+  to: Broker
+  type: has_one
+  via: Enrollment.broker
+- from: Enrollment
+  to: EnrollmentCoverage
+  type: has_many
+  via: Enrollment.enrollment_coverages
+- from: EmployeeDeduction
+  to: Employee
+  type: belongs_to
+  via: EmployeeDeduction.employee_id
+notes: Identifiers are prefixed ULID-like strings (empl_, employee_). Money amounts
+  are integer minor units with currency_code.

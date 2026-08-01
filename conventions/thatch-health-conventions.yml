@@ -1,0 +1,60 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.thatch.com/ + openapi/thatch-health-platforms-openapi-original.yml
+authentication:
+  style: bearer-api-key
+  header: Authorization
+  format: Bearer <YOUR_API_KEY>
+  key_prefix: sk_
+  provisioning: API keys generated in the Thatch dashboard; partner accounts provisioned
+    by platforms@thatch.com
+  see: authentication/thatch-health-authentication.yml
+idempotency:
+  supported: false
+  notes: No Idempotency-Key header or idempotency contract is documented.
+pagination:
+  style: page-based
+  request_params:
+  - page[number]   # integer >= 1, default 1
+  - page[size]     # integer 1..1000, default 20
+  response_fields:
+  - pagination.total_records
+  - pagination.current_page
+  - pagination.total_pages
+  - pagination.next_page
+  - pagination.prev_page
+  envelope: list responses wrap results in a data[] array alongside a pagination object
+filtering:
+  notes: List endpoints take resource-scoped filters, e.g. employer_id (required
+    on /deductions) and periods[start_after]/periods[end_before] date filters in
+    ISO 8601 format.
+metadata:
+  supported: true
+  notes: Resources accept a metadata object of key-value pairs; individual keys are
+    unset by posting an empty string, all keys by posting an empty object to metadata.
+field_expansion:
+  supported: false
+  notes: No expand/sparse-fieldset parameters documented.
+request_tracing:
+  notes: No request-id header documented.
+versioning:
+  scheme: uri-path
+  current: v1
+  see: lifecycle/thatch-health-lifecycle.yml
+error_envelope:
+  notes: The public OpenAPI declares only 200/201/204 success responses; the error
+    envelope is undocumented in the public reference.
+rate_limits:
+  notes: No rate-limit headers or quotas documented publicly.
+identifiers:
+  style: prefixed ULID-like ids
+  examples:
+  - empl_01j9w59xh2p5d03z0zxgcv2vag   # employer
+  - employee_01j85kpd8yxkabyrm83d3h2ya3   # employee
+money:
+  notes: Monetary amounts are integer minor units with a currency_code (e.g. amount
+    1099, currency_code USD).
+embedded_flows:
+  notes: Employer onboarding is completed in an embeddable iframe via the claim_url
+    from postEmployerOnboardingSessions; the iframe posts a THATCH_REDIRECT message
+    from https://app.thatch.com. See components/thatch-health-components.yml.

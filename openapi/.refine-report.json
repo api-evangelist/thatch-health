@@ -1,0 +1,34 @@
+{
+  "provider": "thatch-health",
+  "sources": [
+    "thatch-health-deductions-api-openapi.yml",
+    "thatch-health-employees-api-openapi.yml",
+    "thatch-health-employer-onboarding-sessions-api-openapi.yml",
+    "thatch-health-employers-api-openapi.yml",
+    "thatch-health-enrollments-api-openapi.yml",
+    "thatch-health-members-api-openapi.yml",
+    "thatch-health-pay-schedules-api-openapi.yml"
+  ],
+  "outputs": [
+    "thatch-health-deductions-api-openapi.yml",
+    "thatch-health-employees-api-openapi.yml",
+    "thatch-health-employer-onboarding-sessions-api-openapi.yml",
+    "thatch-health-employers-api-openapi.yml",
+    "thatch-health-enrollments-api-openapi.yml",
+    "thatch-health-members-api-openapi.yml",
+    "thatch-health-pay-schedules-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [
+    "thatch-health-deductions-api-openapi.yml: info.version missing",
+    "thatch-health-employees-api-openapi.yml: info.version missing",
+    "thatch-health-employer-onboarding-sessions-api-openapi.yml: info.version missing",
+    "thatch-health-employers-api-openapi.yml: info.version missing",
+    "thatch-health-enrollments-api-openapi.yml: info.version missing",
+    "thatch-health-members-api-openapi.yml: info.version missing",
+    "thatch-health-pay-schedules-api-openapi.yml: info.version missing"
+  ],
+  "notes": [],
+  "skipped": []
+}

@@ -1,0 +1,70 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/thatch-health-platforms-openapi-original.yml
+status: candidate
+server:
+  name: thatch-health
+  transport: http
+notes: No official Thatch MCP server was found (docs, npm, GitHub org, MCP registries).
+  This is a candidate tool list derived from the Thatch for Platforms OpenAPI, one
+  tool per operation. The API is partner-gated (Bearer API keys provisioned by
+  platforms@thatch.com).
+tools:
+- name: get_deductions
+  description: List employee payroll deductions for an employer
+  source_operation: openapi/thatch-health-platforms-openapi-original.yml#getDeductions
+- name: get_employers
+  description: List employers
+  source_operation: openapi/thatch-health-platforms-openapi-original.yml#getEmployers
+- name: post_employers
+  description: Create an employer
+  source_operation: openapi/thatch-health-platforms-openapi-original.yml#postEmployers
+- name: get_employer
+  description: Get an employer by ID
+  source_operation: openapi/thatch-health-platforms-openapi-original.yml#getEmployersEmployerId
+- name: patch_employer
+  description: Update an employer
+  source_operation: openapi/thatch-health-platforms-openapi-original.yml#patchEmployersEmployerId
+- name: get_pay_schedules
+  description: List pay schedules for an employer
+  source_operation: openapi/thatch-health-platforms-openapi-original.yml#getEmployersEmployerIdPaySchedules
+- name: post_pay_schedule
+  description: Create a pay schedule for an employer
+  source_operation: openapi/thatch-health-platforms-openapi-original.yml#postEmployersEmployerIdPaySchedules
+- name: get_pay_schedule
+  description: Get a pay schedule
+  source_operation: openapi/thatch-health-platforms-openapi-original.yml#getEmployersEmployerIdPaySchedulesPayScheduleId
+- name: delete_pay_schedule
+  description: Deactivate a pay schedule
+  source_operation: openapi/thatch-health-platforms-openapi-original.yml#deleteEmployersEmployerIdPaySchedulesPayScheduleId
+- name: patch_pay_schedule
+  description: Update a pay schedule
+  source_operation: openapi/thatch-health-platforms-openapi-original.yml#patchEmployersEmployerIdPaySchedulesPayScheduleId
+- name: get_employees
+  description: List employees
+  source_operation: openapi/thatch-health-platforms-openapi-original.yml#getEmployees
+- name: post_employees
+  description: Create an employee
+  source_operation: openapi/thatch-health-platforms-openapi-original.yml#postEmployees
+- name: get_employee
+  description: Get an employee by ID
+  source_operation: openapi/thatch-health-platforms-openapi-original.yml#getEmployeesId
+- name: patch_employee
+  description: Update an employee
+  source_operation: openapi/thatch-health-platforms-openapi-original.yml#patchEmployeesId
+- name: post_employer_onboarding_session
+  description: Create an employer onboarding session (returns a claim_url for the
+    embeddable onboarding iframe)
+  source_operation: openapi/thatch-health-platforms-openapi-original.yml#postEmployerOnboardingSessions
+- name: get_enrollments
+  description: List enrollments
+  source_operation: openapi/thatch-health-platforms-openapi-original.yml#getEnrollments
+- name: get_enrollment
+  description: Get an enrollment by ID
+  source_operation: openapi/thatch-health-platforms-openapi-original.yml#getEnrollmentsId
+- name: get_members
+  description: List members
+  source_operation: openapi/thatch-health-platforms-openapi-original.yml#getMembers
+- name: get_member
+  description: Get a member by ID
+  source_operation: openapi/thatch-health-platforms-openapi-original.yml#getMembersId

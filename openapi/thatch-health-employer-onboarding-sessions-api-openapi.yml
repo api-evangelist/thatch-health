@@ -12,7 +12,7 @@ info:
     <a href="mailto:platforms@thatch.com">platforms@thatch.com</a> to set up an account.</p>
 
     '
-  version: ''
+  version: "1.0"
 servers:
 - url: //partners.thatchcloud.com/api/partners/v1/
 security:

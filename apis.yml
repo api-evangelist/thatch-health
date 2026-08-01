@@ -1,22 +1,227 @@
 aid: thatch-health
 name: Thatch Health
-description: Thatch Health is a company surfaced as a portfolio company of a16z and added to the API Evangelist
-  network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: Thatch (Thatch Health, Inc.) is a modern health benefits platform that
+  makes it easy for employers to offer personalized healthcare to employees using
+  an ICHRA (Individual Coverage Health Reimbursement Arrangement). Thatch for Platforms
+  is a set of REST APIs and embeddable components that let partner platforms — payroll,
+  HR, and benefits products — bring ICHRA benefits to their customers, covering employer
+  onboarding, employee management, enrollments, members, pay schedules, and payroll
+  deductions.
 url: https://raw.githubusercontent.com/api-evangelist/thatch-health/refs/heads/main/apis.yml
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://docs.thatch.com/img/thatch.svg
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - a16z
-x-tier: stub
-x-tier-reason: portfolio-lead
+x-tier: profile
+x-tier-reason: enriched-provider
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-21'
 tags:
 - Company
-apis: []
+- Healthcare
+- Health Benefits
+- ICHRA
+- Insurance
+- Payroll
+- Embedded Benefits
+- HR
+apis:
+- aid: thatch-health:thatch-health-deductions-api
+  name: Thatch Health Deductions API
+  description: >-
+    Payroll deductions track the costs of plan premiums
+
+    to employees.
+  humanURL: https://docs.thatch.com/api/
+  baseURL: https://partners.thatchcloud.com/api/partners/v1
+  tags:
+  - Deductions
+  properties:
+  - type: OpenAPI
+    url: openapi/thatch-health-deductions-api-openapi.yml
+  - type: Documentation
+    url: https://docs.thatch.com/
+  - type: APIReference
+    url: https://docs.thatch.com/api/
+- aid: thatch-health:thatch-health-employees-api
+  name: Thatch Health Employees API
+  description: >-
+    Employees work for employers, both of which are managed
+
+    by partners. Employees enrolled in plans are also represented in Thatch as member objects.
+  humanURL: https://docs.thatch.com/api/
+  baseURL: https://partners.thatchcloud.com/api/partners/v1
+  tags:
+  - Employees
+  properties:
+  - type: OpenAPI
+    url: openapi/thatch-health-employees-api-openapi.yml
+  - type: Documentation
+    url: https://docs.thatch.com/
+  - type: APIReference
+    url: https://docs.thatch.com/api/
+- aid: thatch-health:thatch-health-employer-onboarding-sessions-api
+  name: Thatch Health Employer onboarding sessions API
+  description: >-
+    Employers onboard into a platform through
+
+    employer onboarding sessions. After creating a session, provide the `claim_url` to the
+
+    onboarding iframe in your app.
+  humanURL: https://docs.thatch.com/api/
+  baseURL: https://partners.thatchcloud.com/api/partners/v1
+  tags:
+  - Employer onboarding sessions
+  properties:
+  - type: OpenAPI
+    url: openapi/thatch-health-employer-onboarding-sessions-api-openapi.yml
+  - type: Documentation
+    url: https://docs.thatch.com/
+  - type: APIReference
+    url: https://docs.thatch.com/api/
+- aid: thatch-health:thatch-health-employers-api
+  name: Thatch Health Employers API
+  description: >-
+    Platforms onboard employers into Thatch, and have employees
+
+    enrolled in plans.
+  humanURL: https://docs.thatch.com/api/
+  baseURL: https://partners.thatchcloud.com/api/partners/v1
+  tags:
+  - Employers
+  properties:
+  - type: OpenAPI
+    url: openapi/thatch-health-employers-api-openapi.yml
+  - type: Documentation
+    url: https://docs.thatch.com/
+  - type: APIReference
+    url: https://docs.thatch.com/api/
+- aid: thatch-health:thatch-health-enrollments-api
+  name: Thatch Health Enrollments API
+  description: Enrollments use member objects to track employee coverage status.
+  humanURL: https://docs.thatch.com/api/
+  baseURL: https://partners.thatchcloud.com/api/partners/v1
+  tags:
+  - Enrollments
+  properties:
+  - type: OpenAPI
+    url: openapi/thatch-health-enrollments-api-openapi.yml
+  - type: Documentation
+    url: https://docs.thatch.com/
+  - type: APIReference
+    url: https://docs.thatch.com/api/
+- aid: thatch-health:thatch-health-members-api
+  name: Thatch Health Members API
+  description: >-
+    Members represent employees enrolled in plans. Thatch creates member
+
+    objects automatically, but you can retrieve them (for example, to aid in supporting an enrolled employee.
+  humanURL: https://docs.thatch.com/api/
+  baseURL: https://partners.thatchcloud.com/api/partners/v1
+  tags:
+  - Members
+  properties:
+  - type: OpenAPI
+    url: openapi/thatch-health-members-api-openapi.yml
+  - type: Documentation
+    url: https://docs.thatch.com/
+  - type: APIReference
+    url: https://docs.thatch.com/api/
+- aid: thatch-health:thatch-health-pay-schedules-api
+  name: Thatch Health Pay Schedules API
+  description: >-
+    Pay schedules model the cadence of employee paychecks for the purpose of deduction calculations.
+  humanURL: https://docs.thatch.com/api/
+  baseURL: https://partners.thatchcloud.com/api/partners/v1
+  tags:
+  - Pay Schedules
+  properties:
+  - type: OpenAPI
+    url: openapi/thatch-health-pay-schedules-api-openapi.yml
+  - type: Documentation
+    url: https://docs.thatch.com/
+  - type: APIReference
+    url: https://docs.thatch.com/api/
+common:
+- type: TrustCenter
+  url: security/thatch-health-trust-center.yml
+- type: Website
+  url: https://thatch.com/
+- type: DeveloperPortal
+  url: https://docs.thatch.com/
+- type: Documentation
+  url: https://docs.thatch.com/
+- type: APIReference
+  url: https://docs.thatch.com/api/
+- type: GettingStarted
+  url: https://docs.thatch.com/
+- type: Support
+  url: https://support.thatch.com/
+- type: Blog
+  url: https://thatch.com/blog
+- type: Pricing
+  url: https://thatch.com/pricing
+- type: SignUp
+  url: https://app.thatch.com/employers/onboarding/welcome/get-started
+- type: Login
+  url: https://app.thatch.com/magic_link/login
+- type: TermsOfService
+  url: https://thatch.com/legal/platform-terms
+- type: PrivacyPolicy
+  url: https://thatch.com/legal/privacy-policy
+- type: GitHubOrganization
+  url: https://github.com/thatch-health
+- type: StatusPage
+  url: https://status.thatch.com/
+- type: Compliance
+  url: https://trust.thatch.com/
+- type: Lifecycle
+  url: lifecycle/thatch-health-lifecycle.yml
+- type: Authentication
+  url: authentication/thatch-health-authentication.yml
+- type: Conventions
+  url: conventions/thatch-health-conventions.yml
+- type: Conformance
+  url: conformance/thatch-health-conformance.yml
+- type: Packages
+  url: packages/thatch-health-packages.yml
+- type: WellKnown
+  url: well-known/thatch-health-well-known.yml
+- type: MCPServer
+  url: mcp/thatch-health-mcp.yml
+- type: LLMsTxt
+  url: llms/thatch-health-llms.txt
+- type: Components
+  url: components/thatch-health-components.yml
+- type: Sandbox
+  url: sandbox/thatch-health-sandbox.yml
+- type: DataModel
+  url: data-model/thatch-health-data-model.yml
+- type: DomainSecurity
+  url: security/thatch-health-domain-security.yml
+- type: AgentSkill
+  url: skills/_index.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+x-enrichment:
+  date: '2026-07-21'
+  status: enriched
+  artifacts_added: 21
+  pass: local-v1

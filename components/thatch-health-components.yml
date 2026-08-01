@@ -1,0 +1,24 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.thatch.com/ + https://thatch.com/platforms
+families:
+- name: Employer onboarding
+  kind: embedded-iframe
+  description: Hosted employer onboarding flow embedded in the partner's product
+    as an iframe. The partner creates a secure session via POST /employer_onboarding_sessions,
+    embeds the returned claim_url as the iframe src, and handles the THATCH_REDIRECT
+    postMessage event (origin https://app.thatch.com) to redirect the employer when
+    they finalize allowances. Thatch handles all onboarding logic and data collection
+    inside the iframe (account creation, bank connection, employee invites).
+  components:
+  - name: thatch-employer-onboarding
+    element: iframe
+    src: claim_url returned by postEmployerOnboardingSessions
+    events:
+    - type: THATCH_REDIRECT
+      payload: redirectUrl
+      origin: https://app.thatch.com
+notes: Thatch for Platforms is marketed as "APIs and embeddable components". The
+  employer onboarding iframe is the embeddable component documented publicly; no
+  standalone JS component/loader library is published (npm scope carries design-system
+  tooling only).

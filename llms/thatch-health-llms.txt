@@ -1,0 +1,26 @@
+# Thatch Health
+
+> Thatch (Thatch Health, Inc.) is a modern health benefits platform built around ICHRA (Individual Coverage Health Reimbursement Arrangement). Thatch for Platforms is a partner-gated set of REST APIs and embeddable components that let payroll, HR, and benefits platforms offer ICHRA health benefits to their customers — employer onboarding, employee management, enrollments, members, pay schedules, and payroll deductions.
+
+The Thatch for Platforms API is available to approved partners only; contact platforms@thatch.com for an account. Authentication uses Bearer API keys (sk_ prefix) generated in the Thatch dashboard. The base URL is https://partners.thatchcloud.com/api/partners/v1. List endpoints use page[number]/page[size] pagination (max page size 1,000) and most resources support a metadata key-value object. Employer onboarding is delivered as an embeddable iframe: create an employer_onboarding_session, embed the returned claim_url, and handle the THATCH_REDIRECT postMessage event from https://app.thatch.com.
+
+## APIs
+
+- [Thatch for Platforms API reference](https://docs.thatch.com/api/): full Redoc API reference (employers, employees, employer onboarding sessions, pay schedules, deductions, enrollments, members)
+- [Quickstart guide](https://docs.thatch.com/): developer quickstart walking through employer creation, employee creation, the onboarding iframe, and payroll deductions
+
+## Specs
+
+- [OpenAPI 3.0.1 (captured)](https://raw.githubusercontent.com/api-evangelist/thatch-health/refs/heads/main/openapi/thatch-health-platforms-openapi-original.yml): Thatch for Platforms API, 19 operations
+- [APIs.json profile](https://raw.githubusercontent.com/api-evangelist/thatch-health/refs/heads/main/apis.yml): machine-readable index of this provider's APIs and artifacts
+
+## Docs
+
+- [Thatch website](https://thatch.com/): ICHRA health benefits platform
+- [Thatch for Platforms](https://thatch.com/platforms): partner/platform product overview
+- [Help center](https://support.thatch.com/): support articles
+- [Status page](https://status.thatch.com/): system status and uptime
+- [Trust center](https://trust.thatch.com/): security and compliance (SOC 2)
+- [Pricing](https://thatch.com/pricing)
+- [Platform terms](https://thatch.com/legal/platform-terms)
+- [Privacy policy](https://thatch.com/legal/privacy-policy)

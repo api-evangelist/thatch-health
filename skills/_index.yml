@@ -1,0 +1,27 @@
+generated: '2026-07-21'
+method: generated
+skills:
+- file: thatch-health-onboard-employer.md
+  name: Onboard an employer into ICHRA benefits
+  api: openapi/thatch-health-platforms-openapi-original.yml
+  operations:
+  - postEmployers
+  - postEmployerOnboardingSessions
+  - getEmployersEmployerId
+- file: thatch-health-manage-employees.md
+  name: Manage employees and dependents
+  api: openapi/thatch-health-platforms-openapi-original.yml
+  operations:
+  - postEmployees
+  - getEmployees
+  - getEmployeesId
+  - patchEmployeesId
+- file: thatch-health-payroll-deductions.md
+  name: Sync payroll deductions and pay schedules
+  api: openapi/thatch-health-platforms-openapi-original.yml
+  operations:
+  - postEmployersEmployerIdPaySchedules
+  - getEmployersEmployerIdPaySchedules
+  - patchEmployersEmployerIdPaySchedulesPayScheduleId
+  - deleteEmployersEmployerIdPaySchedulesPayScheduleId
+  - getDeductions

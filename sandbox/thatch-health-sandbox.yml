@@ -1,0 +1,12 @@
+generated: '2026-07-21'
+method: searched
+source: https://thatch.com/platforms
+availability: partner-gated
+description: Thatch advertises a sandbox environment and a demo application for
+  Thatch for Platforms partners ("Contact us to access the full API documentation,
+  a sandbox environment, and our demo application"), provisioned when a partner
+  account is set up via platforms@thatch.com.
+test_values: []
+notes: No public test keys, magic values, or sandbox base URL are published; the
+  quickstart uses .test email domains in examples (admin@acme.test) but documents
+  no test-mode key prefixes or fixtures. Access requires partner onboarding.

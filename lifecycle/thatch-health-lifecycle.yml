@@ -1,0 +1,22 @@
+generated: '2026-07-21'
+method: searched
+source: https://status.thatch.com/ + docs.thatch.com + openapi/thatch-health-platforms-openapi-original.yml
+versioning:
+  scheme: uri-path
+  current: v1
+  evidence: Base URL https://partners.thatchcloud.com/api/partners/v1
+deprecation:
+  policy_url: null
+  sunset_header: false
+  notes: No published deprecation policy or RFC 8594 Sunset header support found
+    in the docs or OpenAPI.
+sla:
+  url: null
+  notes: No published SLA found.
+status_page: https://status.thatch.com/
+status_page_components:
+- Website
+- App
+status_page_notes: Public status page showing operational state and uptime history
+  (100% uptime shown for Website and App over the trailing quarter at capture).
+deprecated_operations: []

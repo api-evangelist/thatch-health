@@ -1,0 +1,25 @@
+generated: '2026-07-21'
+method: searched
+source: npm registry search + github.com/thatch-health + docs.thatch.com
+packages:
+- language: css
+  registry: npm
+  name: "@thatch-health/slab-tokens"
+  url: https://www.npmjs.com/package/@thatch-health/slab-tokens
+  install: npm install @thatch-health/slab-tokens
+  official: true
+  purpose: Generated CSS files and code plugins for the Slab design system at Thatch
+    (design tooling, not an API client)
+- language: javascript
+  registry: npm
+  name: "@thatch-health/eslint-plugin-slab-tailwind"
+  url: https://www.npmjs.com/package/@thatch-health/eslint-plugin-slab-tailwind
+  install: npm install @thatch-health/eslint-plugin-slab-tailwind
+  official: true
+  purpose: ESLint plugin enforcing Slab design-token Tailwind utilities (design tooling,
+    not an API client)
+notes: No first-party API client SDKs were found on npm, PyPI, RubyGems, Maven Central,
+  NuGet, pkg.go.dev, Packagist, or crates.io, and the docs recommend direct REST
+  calls with curl. The @thatch-health npm scope publishes design-system tooling only.
+  The public GitHub org (github.com/thatch-health) hosts forks of Ruby/Rails OSS
+  dependencies, no SDK repos.

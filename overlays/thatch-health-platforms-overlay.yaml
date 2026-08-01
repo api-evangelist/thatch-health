@@ -1,0 +1,40 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for the Thatch for Platforms API
+  version: 1.0.0
+x-generated: '2026-07-21'
+x-method: generated
+x-source: openapi/thatch-health-platforms-openapi-original.yml
+extends: openapi/thatch-health-platforms-openapi-original.yml
+actions:
+- target: $.info
+  update:
+    version: v1
+    contact:
+      name: Thatch for Platforms
+      email: platforms@thatch.com
+      url: https://thatch.com/platforms
+    x-apievangelist:
+      aid: thatch-health:thatch-for-platforms-api
+      enriched: '2026-07-21'
+      documentation: https://docs.thatch.com/
+      status-page: https://status.thatch.com/
+      trust-center: https://trust.thatch.com/
+- target: $.servers
+  update:
+  - url: https://partners.thatchcloud.com/api/partners/v1
+    description: Production (partner-gated; HTTPS scheme made explicit — the source
+      spec uses a protocol-relative URL)
+- target: $.info
+  update:
+    x-apievangelist-notes:
+    - List endpoints paginate with page[number]/page[size] (default 20, max 1,000)
+      and return a pagination object (total_records, current_page, total_pages,
+      next_page, prev_page).
+    - Employers, employees, and pay schedules support a metadata key-value object;
+      keys are unset by posting empty-string values, or all keys by posting {}.
+    - The spec declares no 4xx/5xx responses and no webhooks; error semantics are
+      undocumented in the public reference.
+    - Employer onboarding is completed in an embeddable iframe via the claim_url
+      returned by postEmployerOnboardingSessions; the iframe posts a THATCH_REDIRECT
+      message from https://app.thatch.com when complete.

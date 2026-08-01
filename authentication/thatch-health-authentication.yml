@@ -1,0 +1,22 @@
+generated: '2026-07-21'
+method: searched
+source: openapi/thatch-health-platforms-openapi-original.yml
+docs: https://docs.thatch.com/
+notes: API keys are generated in the Thatch dashboard (app.thatch.com) and sent as
+  `Authorization Bearer <YOUR_API_KEY>` on every request; keys use an `sk_` prefix.
+  Partner accounts are provisioned by Thatch (platforms@thatch.com). Admin surfaces
+  on partners.thatchcloud.com and app.thatch.com expose OIDC discovery documents
+  (authorization-code flow, ES256), captured in well-known/.
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: Bearer
+  type: apiKey
+  in: header
+  parameter: Authorization
+  description: Provide your API key in a `Bearer` token header (as in, **Bearer sk_123**).
+  sources:
+  - openapi/thatch-health-platforms-openapi-original.yml

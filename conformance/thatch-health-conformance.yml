@@ -1,0 +1,43 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/thatch-health-platforms-openapi-original.yml + thatch.com + trust.thatch.com
+standards:
+- id: oauth2
+  conforms: false
+  evidence: Partner API uses Bearer API keys (apiKey securityScheme), not OAuth 2.0
+- id: oidc
+  conforms: partial
+  evidence: OpenID Connect discovery documents published at partners.thatchcloud.com
+    and app.thatch.com /.well-known/openid-configuration (admin authorization-code
+    flow, ES256); not used for partner API access
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: OpenAPI declares no 4xx/5xx responses and no application/problem+json
+    media types
+- id: pagination
+  conforms: true
+  evidence: page[number]/page[size] query parameters with a structured pagination
+    response object (total_records, current_page, total_pages, next_page, prev_page)
+    across list operations
+- id: idempotency
+  conforms: false
+  evidence: No Idempotency-Key header or idempotency contract documented in the
+    OpenAPI or docs
+- id: json-api
+  conforms: false
+  evidence: Plain JSON envelopes (data + pagination), not JSON:API media type
+- id: fhir
+  conforms: false
+  evidence: Health-benefits administration API; no FHIR resource shapes
+- id: scim
+  conforms: false
+  evidence: No SCIM 2.0 paths or schemas
+- id: soc2
+  conforms: true
+  evidence: SOC 2 named on the Thatch trust center (trust.thatch.com, Vanta-powered);
+    see security/thatch-health-trust-center.yml
+- id: aca-marketplace-privacy
+  conforms: true
+  evidence: thatch.com states Thatch Health Insurance Services LLC complies with
+    45 CFR 155.220(c)/(d) and 45 CFR 155.260 protecting privacy and security of
+    personally identifiable information for Health Insurance Marketplace business
