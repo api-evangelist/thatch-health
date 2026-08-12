@@ -157,6 +157,8 @@ apis:
   - type: APIReference
     url: https://docs.thatch.com/api/
 common:
+- type: Overlay
+  url: overlays/thatch-health-platforms-overlay.yaml
 - type: TrustCenter
   url: security/thatch-health-trust-center.yml
 - type: Website
