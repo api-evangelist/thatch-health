@@ -1,0 +1,471 @@
+{
+  "item": [
+    {
+      "id": "c1d8c6dc-4959-43f7-9956-837621cae6aa",
+      "name": "Employees",
+      "description": {
+        "content": "Employees work for employers, both of which are managed\nby partners. Employees enrolled in plans are also represented in Thatch as member objects.\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "34c36e44-9a2f-430c-b582-d87fc876d697",
+          "name": "List employees",
+          "request": {
+            "name": "List employees",
+            "description": {
+              "content": "List employees",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "employees"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "employer_id",
+                  "value": "<string>",
+                  "description": "ID of the employee's employer"
+                },
+                {
+                  "disabled": false,
+                  "key": "page[number]",
+                  "value": "1",
+                  "description": "Page number"
+                },
+                {
+                  "disabled": false,
+                  "key": "page[size]",
+                  "value": "20",
+                  "description": "Number of items per page. Must be between 1 and 1,000 (inclusive). Defaults to 20."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6d74950f-95e6-40ac-acdd-390eb19ac560",
+              "name": "List employees",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "employees"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "employer_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page[number]",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page[size]",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"dependents\": [\n        {\n          \"relationship\": \"spouse\",\n          \"date_of_birth\": \"2012-04-04\"\n        }\n      ],\n      \"employer_id\": \"empl_01j2j3smtwx656y2tbqm7ty6gr\",\n      \"first_name\": \"Ana\",\n      \"id\": \"employee_01j85kpd8yxkabyrm83d3h2ya3\",\n      \"last_name\": \"Diaz\",\n      \"metadata\": {\n        \"key\": \"value\"\n      },\n      \"zip\": \"94103\",\n      \"personal_email\": \"ana.diaz@gmail.test\",\n      \"work_email\": \"ana.diaz@acme.test\",\n      \"enrollment_events\": [\n        {\n          \"end_date\": \"2024-11-30\",\n          \"plan_year\": 2024,\n          \"start_date\": \"2024-11-01\",\n          \"status\": \"active\",\n          \"type\": \"open_enrollment\",\n          \"subtype\": \"renewal\"\n        },\n        {\n          \"end_date\": \"2024-11-30\",\n          \"plan_year\": 2024,\n          \"start_date\": \"2024-11-01\",\n          \"status\": \"active\",\n          \"type\": \"open_enrollment\",\n          \"subtype\": \"renewal\"\n        }\n      ],\n      \"pay_schedules\": [\n        {\n          \"id\": \"paysch_01k8ceyhq89b9c1nz141cca88f\",\n          \"start_date\": \"2024-01-01\",\n          \"end_date\": \"2024-12-31\"\n        },\n        {\n          \"id\": \"paysch_01k8ceyhq89b9c1nz141cca88f\",\n          \"start_date\": \"2024-01-01\",\n          \"end_date\": \"2024-12-31\"\n        }\n      ],\n      \"member_id\": \"mbr_01j85kpd8yxkabyrm83d3h2ya3\",\n      \"invite_link\": \"https://app.thatch.com/member/onboarding/welcome?invite_token=abc123\",\n      \"date_of_birth\": \"1989-07-15\",\n      \"native_employee_id\": \"EMP-12345\"\n    },\n    {\n      \"dependents\": [\n        {\n          \"relationship\": \"spouse\",\n          \"date_of_birth\": \"2012-04-04\"\n        }\n      ],\n      \"employer_id\": \"empl_01j2j3smtwx656y2tbqm7ty6gr\",\n      \"first_name\": \"Ana\",\n      \"id\": \"employee_01j85kpd8yxkabyrm83d3h2ya3\",\n      \"last_name\": \"Diaz\",\n      \"metadata\": {\n        \"key\": \"value\"\n      },\n      \"zip\": \"94103\",\n      \"personal_email\": \"ana.diaz@gmail.test\",\n      \"work_email\": \"ana.diaz@acme.test\",\n      \"enrollment_events\": [\n        {\n          \"end_date\": \"2024-11-30\",\n          \"plan_year\": 2024,\n          \"start_date\": \"2024-11-01\",\n          \"status\": \"active\",\n          \"type\": \"open_enrollment\",\n          \"subtype\": \"renewal\"\n        },\n        {\n          \"end_date\": \"2024-11-30\",\n          \"plan_year\": 2024,\n          \"start_date\": \"2024-11-01\",\n          \"status\": \"active\",\n          \"type\": \"open_enrollment\",\n          \"subtype\": \"renewal\"\n        }\n      ],\n      \"pay_schedules\": [\n        {\n          \"id\": \"paysch_01k8ceyhq89b9c1nz141cca88f\",\n          \"start_date\": \"2024-01-01\",\n          \"end_date\": \"2024-12-31\"\n        },\n        {\n          \"id\": \"paysch_01k8ceyhq89b9c1nz141cca88f\",\n          \"start_date\": \"2024-01-01\",\n          \"end_date\": \"2024-12-31\"\n        }\n      ],\n      \"member_id\": \"mbr_01j85kpd8yxkabyrm83d3h2ya3\",\n      \"invite_link\": \"https://app.thatch.com/member/onboarding/welcome?invite_token=abc123\",\n      \"date_of_birth\": \"1989-07-15\",\n      \"native_employee_id\": \"EMP-12345\"\n    }\n  ],\n  \"pagination\": {\n    \"current_page\": 1,\n    \"next_page\": 2,\n    \"prev_page\": 9133,\n    \"total_pages\": 3,\n    \"total_records\": 25\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f209fcd4-db87-4216-9022-de366a3efc46",
+          "name": "Create an employee",
+          "request": {
+            "name": "Create an employee",
+            "description": {
+              "content": "Create an employee",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "employees"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"employer_id\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"date_of_birth\": \"<date>\",\n  \"zip\": \"<string>\",\n  \"personal_email\": \"<string>\",\n  \"work_email\": \"<string>\",\n  \"employment_subtype\": \"<string>\",\n  \"pay_type\": \"<string>\",\n  \"pay_rate\": \"<float>\",\n  \"start_date\": \"<date>\",\n  \"end_date\": \"<date>\",\n  \"dependents\": [\n    {\n      \"date_of_birth\": \"<date>\",\n      \"relationship\": \"<string>\"\n    },\n    {\n      \"date_of_birth\": \"<date>\",\n      \"relationship\": \"<string>\"\n    }\n  ],\n  \"pay_schedules\": [\n    {\n      \"id\": \"<string>\",\n      \"start_date\": \"<date>\",\n      \"end_date\": \"<date>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"start_date\": \"<date>\",\n      \"end_date\": \"<date>\"\n    }\n  ],\n  \"native_employee_id\": \"<string>\",\n  \"metadata\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "02d151ab-4266-4707-8c0b-b8fc109978eb",
+              "name": "Create an employee",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "employees"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"employer_id\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"date_of_birth\": \"<date>\",\n  \"zip\": \"90210\",\n  \"personal_email\": \"<string>\",\n  \"work_email\": \"<string>\",\n  \"employment_subtype\": \"<string>\",\n  \"pay_type\": \"<string>\",\n  \"pay_rate\": \"<float>\",\n  \"start_date\": \"<date>\",\n  \"end_date\": \"<date>\",\n  \"dependents\": [\n    {\n      \"date_of_birth\": \"<date>\",\n      \"relationship\": \"<string>\"\n    },\n    {\n      \"date_of_birth\": \"<date>\",\n      \"relationship\": \"<string>\"\n    }\n  ],\n  \"pay_schedules\": [\n    {\n      \"id\": \"<string>\",\n      \"start_date\": \"<date>\",\n      \"end_date\": \"<date>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"start_date\": \"<date>\",\n      \"end_date\": \"<date>\"\n    }\n  ],\n  \"native_employee_id\": \"EMP-12345\",\n  \"metadata\": {\n    \"key\": \"value\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"dependents\": [\n    {\n      \"relationship\": \"spouse\",\n      \"date_of_birth\": \"2012-04-04\"\n    }\n  ],\n  \"employer_id\": \"empl_01j2j3smtwx656y2tbqm7ty6gr\",\n  \"first_name\": \"Ana\",\n  \"id\": \"employee_01j85kpd8yxkabyrm83d3h2ya3\",\n  \"last_name\": \"Diaz\",\n  \"metadata\": {\n    \"key\": \"value\"\n  },\n  \"zip\": \"94103\",\n  \"personal_email\": \"ana.diaz@gmail.test\",\n  \"work_email\": \"ana.diaz@acme.test\",\n  \"enrollment_events\": [\n    {\n      \"end_date\": \"2024-11-30\",\n      \"plan_year\": 2024,\n      \"start_date\": \"2024-11-01\",\n      \"status\": \"active\",\n      \"type\": \"open_enrollment\",\n      \"subtype\": \"renewal\"\n    },\n    {\n      \"end_date\": \"2024-11-30\",\n      \"plan_year\": 2024,\n      \"start_date\": \"2024-11-01\",\n      \"status\": \"active\",\n      \"type\": \"open_enrollment\",\n      \"subtype\": \"renewal\"\n    }\n  ],\n  \"pay_schedules\": [\n    {\n      \"id\": \"paysch_01k8ceyhq89b9c1nz141cca88f\",\n      \"start_date\": \"2024-01-01\",\n      \"end_date\": \"2024-12-31\"\n    },\n    {\n      \"id\": \"paysch_01k8ceyhq89b9c1nz141cca88f\",\n      \"start_date\": \"2024-01-01\",\n      \"end_date\": \"2024-12-31\"\n    }\n  ],\n  \"member_id\": \"mbr_01j85kpd8yxkabyrm83d3h2ya3\",\n  \"invite_link\": \"https://app.thatch.com/member/onboarding/welcome?invite_token=abc123\",\n  \"date_of_birth\": \"1989-07-15\",\n  \"native_employee_id\": \"EMP-12345\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f05a6997-393b-49b3-9a19-96d751c48a7a",
+          "name": "Get an employee",
+          "request": {
+            "name": "Get an employee",
+            "description": {
+              "content": "Get an employee",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "employees",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Employee ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "493cd0f3-d500-41f1-8912-ea0c596009f6",
+              "name": "Get an employee",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "employees",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Employee ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"dependents\": [\n    {\n      \"relationship\": \"spouse\",\n      \"date_of_birth\": \"2012-04-04\"\n    }\n  ],\n  \"employer_id\": \"empl_01j2j3smtwx656y2tbqm7ty6gr\",\n  \"first_name\": \"Ana\",\n  \"id\": \"employee_01j85kpd8yxkabyrm83d3h2ya3\",\n  \"last_name\": \"Diaz\",\n  \"metadata\": {\n    \"key\": \"value\"\n  },\n  \"zip\": \"94103\",\n  \"personal_email\": \"ana.diaz@gmail.test\",\n  \"work_email\": \"ana.diaz@acme.test\",\n  \"enrollment_events\": [\n    {\n      \"end_date\": \"2024-11-30\",\n      \"plan_year\": 2024,\n      \"start_date\": \"2024-11-01\",\n      \"status\": \"active\",\n      \"type\": \"open_enrollment\",\n      \"subtype\": \"renewal\"\n    },\n    {\n      \"end_date\": \"2024-11-30\",\n      \"plan_year\": 2024,\n      \"start_date\": \"2024-11-01\",\n      \"status\": \"active\",\n      \"type\": \"open_enrollment\",\n      \"subtype\": \"renewal\"\n    }\n  ],\n  \"pay_schedules\": [\n    {\n      \"id\": \"paysch_01k8ceyhq89b9c1nz141cca88f\",\n      \"start_date\": \"2024-01-01\",\n      \"end_date\": \"2024-12-31\"\n    },\n    {\n      \"id\": \"paysch_01k8ceyhq89b9c1nz141cca88f\",\n      \"start_date\": \"2024-01-01\",\n      \"end_date\": \"2024-12-31\"\n    }\n  ],\n  \"member_id\": \"mbr_01j85kpd8yxkabyrm83d3h2ya3\",\n  \"invite_link\": \"https://app.thatch.com/member/onboarding/welcome?invite_token=abc123\",\n  \"date_of_birth\": \"1989-07-15\",\n  \"native_employee_id\": \"EMP-12345\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "55ebb8d3-7ae8-4efc-86e5-973feb972700",
+          "name": "Update an employee",
+          "request": {
+            "name": "Update an employee",
+            "description": {
+              "content": "Update an employee",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "employees",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Employee ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"personal_email\": \"<string>\",\n  \"work_email\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"employment_subtype\": \"<string>\",\n  \"pay_type\": \"<string>\",\n  \"pay_rate\": \"<float>\",\n  \"start_date\": \"<date>\",\n  \"end_date\": \"<date>\",\n  \"date_of_birth\": \"<date>\",\n  \"zip\": \"<string>\",\n  \"dependents\": [\n    {\n      \"date_of_birth\": \"<date>\",\n      \"relationship\": \"<string>\"\n    },\n    {\n      \"date_of_birth\": \"<date>\",\n      \"relationship\": \"<string>\"\n    }\n  ],\n  \"pay_schedules\": [\n    {\n      \"id\": \"<string>\",\n      \"start_date\": \"<date>\",\n      \"end_date\": \"<date>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"start_date\": \"<date>\",\n      \"end_date\": \"<date>\"\n    }\n  ],\n  \"native_employee_id\": \"<string>\",\n  \"metadata\": {\n    \"key_0\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6080ca58-6559-4d93-9a96-62e4caaeeb0e",
+              "name": "Update an employee",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "employees",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Employee ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"personal_email\": \"<string>\",\n  \"work_email\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"employment_subtype\": \"<string>\",\n  \"pay_type\": \"<string>\",\n  \"pay_rate\": \"<float>\",\n  \"start_date\": \"<date>\",\n  \"end_date\": \"<date>\",\n  \"date_of_birth\": \"<date>\",\n  \"zip\": \"90210\",\n  \"dependents\": [\n    {\n      \"date_of_birth\": \"<date>\",\n      \"relationship\": \"<string>\"\n    },\n    {\n      \"date_of_birth\": \"<date>\",\n      \"relationship\": \"<string>\"\n    }\n  ],\n  \"pay_schedules\": [\n    {\n      \"id\": \"<string>\",\n      \"start_date\": \"<date>\",\n      \"end_date\": \"<date>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"start_date\": \"<date>\",\n      \"end_date\": \"<date>\"\n    }\n  ],\n  \"native_employee_id\": \"EMP-12345\",\n  \"metadata\": {\n    \"key\": \"value\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"dependents\": [\n    {\n      \"relationship\": \"spouse\",\n      \"date_of_birth\": \"2012-04-04\"\n    }\n  ],\n  \"employer_id\": \"empl_01j2j3smtwx656y2tbqm7ty6gr\",\n  \"first_name\": \"Ana\",\n  \"id\": \"employee_01j85kpd8yxkabyrm83d3h2ya3\",\n  \"last_name\": \"Diaz\",\n  \"metadata\": {\n    \"key\": \"value\"\n  },\n  \"zip\": \"94103\",\n  \"personal_email\": \"ana.diaz@gmail.test\",\n  \"work_email\": \"ana.diaz@acme.test\",\n  \"enrollment_events\": [\n    {\n      \"end_date\": \"2024-11-30\",\n      \"plan_year\": 2024,\n      \"start_date\": \"2024-11-01\",\n      \"status\": \"active\",\n      \"type\": \"open_enrollment\",\n      \"subtype\": \"renewal\"\n    },\n    {\n      \"end_date\": \"2024-11-30\",\n      \"plan_year\": 2024,\n      \"start_date\": \"2024-11-01\",\n      \"status\": \"active\",\n      \"type\": \"open_enrollment\",\n      \"subtype\": \"renewal\"\n    }\n  ],\n  \"pay_schedules\": [\n    {\n      \"id\": \"paysch_01k8ceyhq89b9c1nz141cca88f\",\n      \"start_date\": \"2024-01-01\",\n      \"end_date\": \"2024-12-31\"\n    },\n    {\n      \"id\": \"paysch_01k8ceyhq89b9c1nz141cca88f\",\n      \"start_date\": \"2024-01-01\",\n      \"end_date\": \"2024-12-31\"\n    }\n  ],\n  \"member_id\": \"mbr_01j85kpd8yxkabyrm83d3h2ya3\",\n  \"invite_link\": \"https://app.thatch.com/member/onboarding/welcome?invite_token=abc123\",\n  \"date_of_birth\": \"1989-07-15\",\n  \"native_employee_id\": \"EMP-12345\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "//partners.thatchcloud.com/api/partners/v1/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "27f1db61-76df-4b9d-b7b3-23210b861759",
+    "name": "Thatch for Platforms Deductions Employees API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "<p><a href=\"https://thatch.com/platforms\">Thatch for Platforms</a> is a set of APIs and\nembeddable components, enabling you to effortlessly bring ICHRA (Individual Coverage Health\nReimbursement Arrangement) benefits to your customers.</p><p>Thatch for Platforms is only\navailable to specific partners. Get in touch with us at\n<a href=\"mailto:platforms@thatch.com\">platforms@thatch.com</a> to set up an account.</p>\n",
+      "type": "text/plain"
+    }
+  }
+}

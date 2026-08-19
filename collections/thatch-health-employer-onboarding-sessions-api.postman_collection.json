@@ -1,0 +1,148 @@
+{
+  "item": [
+    {
+      "id": "8a2c8c58-03e2-4200-953e-34a4893a9b1f",
+      "name": "Employer onboarding sessions",
+      "description": {
+        "content": "Employers onboard into a platform through\nemployer onboarding sessions. After creating a session, provide the `claim_url` to the\nonboarding iframe in your app.\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "edfb75e9-d14c-4282-bb11-8e3652b9fe2b",
+          "name": "Create an employer onboarding session",
+          "request": {
+            "name": "Create an employer onboarding session",
+            "description": {
+              "content": "Create an employer onboarding session",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "employer_onboarding_sessions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"employer\": \"<string>\",\n  \"email\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9efa581a-7c60-4ea0-ae79-0ca9dfa46cd0",
+              "name": "Create an employer onboarding session",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "employer_onboarding_sessions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"employer\": \"empl_01j2j3smtwx656y2tbqm7ty6gr\",\n  \"email\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"claim_url\": \"https://app.thatch.com/employer_onboarding_sessions/SR86rPsHKWp02FivyQ6Z4hgUN0VBz6RR/claim\",\n  \"employer\": \"empl_01j2j3smtwx656y2tbqm7ty6gr\",\n  \"expires_at\": \"2024-09-11T12:50:46Z\",\n  \"employer_admin_email\": \"admin@example.com\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "//partners.thatchcloud.com/api/partners/v1/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "813c76cc-9c69-46d2-83d1-91eb23530dd0",
+    "name": "Thatch for Platforms Deductions Employer onboarding sessions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "<p><a href=\"https://thatch.com/platforms\">Thatch for Platforms</a> is a set of APIs and\nembeddable components, enabling you to effortlessly bring ICHRA (Individual Coverage Health\nReimbursement Arrangement) benefits to your customers.</p><p>Thatch for Platforms is only\navailable to specific partners. Get in touch with us at\n<a href=\"mailto:platforms@thatch.com\">platforms@thatch.com</a> to set up an account.</p>\n",
+      "type": "text/plain"
+    }
+  }
+}

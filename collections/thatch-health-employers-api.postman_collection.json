@@ -1,0 +1,461 @@
+{
+  "item": [
+    {
+      "id": "1dc1b77f-fb16-4146-bfbb-c1a5c2e91b51",
+      "name": "Employers",
+      "description": {
+        "content": "Platforms onboard employers into Thatch, and have employees\nenrolled in plans.\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "96fedcbd-3bd9-459d-9486-6af48beb740f",
+          "name": "List employers",
+          "request": {
+            "name": "List employers",
+            "description": {
+              "content": "List employers",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "employers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page[number]",
+                  "value": "1",
+                  "description": "Page number"
+                },
+                {
+                  "disabled": false,
+                  "key": "page[size]",
+                  "value": "20",
+                  "description": "Number of items per page. Must be between 1 and 1,000 (inclusive). Defaults to 20."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "68ab8bf0-ef2d-4ce2-9d34-185765413dc5",
+              "name": "List employers",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "employers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page[number]",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page[size]",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"address_line1\": \"123 Main St\",\n      \"business_type\": \"c_corp\",\n      \"city\": \"San Francisco\",\n      \"ein\": \"12-3456789\",\n      \"id\": \"empl_01j2j3smtwx656y2tbqm7ty6gr\",\n      \"lifecycle_events\": [\n        {\n          \"event_type\": \"employees_invited\",\n          \"id\": \"lcevent_01j2j3smtwx656y2tbqm7ty6gr\",\n          \"timestamp\": \"2024-11-01T00:00:00Z\"\n        },\n        {\n          \"event_type\": \"employees_invited\",\n          \"id\": \"lcevent_01j2j3smtwx656y2tbqm7ty6gr\",\n          \"timestamp\": \"2024-11-01T00:00:00Z\"\n        }\n      ],\n      \"metadata\": {\n        \"key\": \"value\"\n      },\n      \"name\": \"Acme Corp\",\n      \"pay_schedules\": [\n        {\n          \"active\": true,\n          \"bank_closure_strategy\": \"before\",\n          \"frequency\": \"bi_weekly\",\n          \"id\": \"paysch_1234\",\n          \"name\": \"Bi-Weekly Payroll\",\n          \"start_date\": \"2024-01-01\",\n          \"reference_pay_date\": \"2024-01-01\",\n          \"end_date\": \"2024-12-31\",\n          \"first_day\": 15,\n          \"second_day\": 30,\n          \"remote_id\": \"remote_123\"\n        },\n        {\n          \"active\": true,\n          \"bank_closure_strategy\": \"before\",\n          \"frequency\": \"bi_weekly\",\n          \"id\": \"paysch_1234\",\n          \"name\": \"Bi-Weekly Payroll\",\n          \"start_date\": \"2024-01-01\",\n          \"reference_pay_date\": \"2024-01-01\",\n          \"end_date\": \"2024-12-31\",\n          \"first_day\": 15,\n          \"second_day\": 30,\n          \"remote_id\": \"remote_123\"\n        }\n      ],\n      \"state\": \"CA\",\n      \"zip\": \"94108\",\n      \"onboarding_status\": \"employees_invited\",\n      \"dba\": \"string\",\n      \"address_line2\": \"string\",\n      \"phone_number\": \"+14152370005\",\n      \"industry\": \"professional_scientific_and_technical_services\",\n      \"pricing\": {\n        \"platform_fee\": {\n          \"amount\": 4500,\n          \"currency_code\": \"USD\"\n        }\n      }\n    },\n    {\n      \"address_line1\": \"123 Main St\",\n      \"business_type\": \"c_corp\",\n      \"city\": \"San Francisco\",\n      \"ein\": \"12-3456789\",\n      \"id\": \"empl_01j2j3smtwx656y2tbqm7ty6gr\",\n      \"lifecycle_events\": [\n        {\n          \"event_type\": \"employees_invited\",\n          \"id\": \"lcevent_01j2j3smtwx656y2tbqm7ty6gr\",\n          \"timestamp\": \"2024-11-01T00:00:00Z\"\n        },\n        {\n          \"event_type\": \"employees_invited\",\n          \"id\": \"lcevent_01j2j3smtwx656y2tbqm7ty6gr\",\n          \"timestamp\": \"2024-11-01T00:00:00Z\"\n        }\n      ],\n      \"metadata\": {\n        \"key\": \"value\"\n      },\n      \"name\": \"Acme Corp\",\n      \"pay_schedules\": [\n        {\n          \"active\": true,\n          \"bank_closure_strategy\": \"before\",\n          \"frequency\": \"bi_weekly\",\n          \"id\": \"paysch_1234\",\n          \"name\": \"Bi-Weekly Payroll\",\n          \"start_date\": \"2024-01-01\",\n          \"reference_pay_date\": \"2024-01-01\",\n          \"end_date\": \"2024-12-31\",\n          \"first_day\": 15,\n          \"second_day\": 30,\n          \"remote_id\": \"remote_123\"\n        },\n        {\n          \"active\": true,\n          \"bank_closure_strategy\": \"before\",\n          \"frequency\": \"bi_weekly\",\n          \"id\": \"paysch_1234\",\n          \"name\": \"Bi-Weekly Payroll\",\n          \"start_date\": \"2024-01-01\",\n          \"reference_pay_date\": \"2024-01-01\",\n          \"end_date\": \"2024-12-31\",\n          \"first_day\": 15,\n          \"second_day\": 30,\n          \"remote_id\": \"remote_123\"\n        }\n      ],\n      \"state\": \"CA\",\n      \"zip\": \"94108\",\n      \"onboarding_status\": \"employees_invited\",\n      \"dba\": \"string\",\n      \"address_line2\": \"string\",\n      \"phone_number\": \"+14152370005\",\n      \"industry\": \"professional_scientific_and_technical_services\",\n      \"pricing\": {\n        \"platform_fee\": {\n          \"amount\": 4500,\n          \"currency_code\": \"USD\"\n        }\n      }\n    }\n  ],\n  \"pagination\": {\n    \"current_page\": 1,\n    \"next_page\": 2,\n    \"prev_page\": 1748,\n    \"total_pages\": 3,\n    \"total_records\": 25\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "76cd4fd3-e3d4-487f-baba-2f08937cd91b",
+          "name": "Create an employer",
+          "request": {
+            "name": "Create an employer",
+            "description": {
+              "content": "Create an employer",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "employers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"address_line1\": \"<string>\",\n  \"business_type\": \"<string>\",\n  \"city\": \"<string>\",\n  \"ein\": \"<string>\",\n  \"email\": \"<string>\",\n  \"name\": \"<string>\",\n  \"state\": \"<string>\",\n  \"zip\": \"<string>\",\n  \"dba\": \"<string>\",\n  \"industry_code\": \"<string>\",\n  \"address_line2\": \"<string>\",\n  \"phone_number\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"offers_health_insurance_today\": \"<boolean>\",\n  \"current_health_insurance\": {\n    \"individual_deductible\": \"<integer>\",\n    \"individual_oop_max\": \"<integer>\",\n    \"network_type\": \"<string>\",\n    \"metal_tier\": \"<string>\"\n  },\n  \"coverage_start_date\": \"<date>\",\n  \"pricing\": {\n    \"platform_fee\": {\n      \"amount\": \"<float>\",\n      \"currency_code\": \"<string>\"\n    }\n  },\n  \"metadata\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "906b64af-28a2-4e70-ab60-ebe33d4214e5",
+              "name": "Create an employer",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "employers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"address_line1\": \"123 Main St\",\n  \"business_type\": \"c_corp\",\n  \"city\": \"San Francisco\",\n  \"ein\": \"12-3456789\",\n  \"email\": \"admin@employer.test\",\n  \"name\": \"Acme Corp\",\n  \"state\": \"CA\",\n  \"zip\": \"94108\",\n  \"dba\": \"\",\n  \"industry_code\": \"111110\",\n  \"address_line2\": \"\",\n  \"phone_number\": \"415-555-1212\",\n  \"first_name\": \"Jane\",\n  \"last_name\": \"Smith\",\n  \"offers_health_insurance_today\": true,\n  \"current_health_insurance\": {\n    \"individual_deductible\": 1500,\n    \"individual_oop_max\": 5000,\n    \"network_type\": \"hmo\",\n    \"metal_tier\": \"silver\"\n  },\n  \"coverage_start_date\": \"2027-01-01\",\n  \"pricing\": {\n    \"platform_fee\": {\n      \"amount\": 4500,\n      \"currency_code\": \"USD\"\n    }\n  },\n  \"metadata\": {\n    \"key\": \"value\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"address_line1\": \"123 Main St\",\n  \"business_type\": \"c_corp\",\n  \"city\": \"San Francisco\",\n  \"ein\": \"12-3456789\",\n  \"id\": \"empl_01j2j3smtwx656y2tbqm7ty6gr\",\n  \"lifecycle_events\": [\n    {\n      \"event_type\": \"employees_invited\",\n      \"id\": \"lcevent_01j2j3smtwx656y2tbqm7ty6gr\",\n      \"timestamp\": \"2024-11-01T00:00:00Z\"\n    },\n    {\n      \"event_type\": \"employees_invited\",\n      \"id\": \"lcevent_01j2j3smtwx656y2tbqm7ty6gr\",\n      \"timestamp\": \"2024-11-01T00:00:00Z\"\n    }\n  ],\n  \"metadata\": {\n    \"key\": \"value\"\n  },\n  \"name\": \"Acme Corp\",\n  \"pay_schedules\": [\n    {\n      \"active\": true,\n      \"bank_closure_strategy\": \"before\",\n      \"frequency\": \"bi_weekly\",\n      \"id\": \"paysch_1234\",\n      \"name\": \"Bi-Weekly Payroll\",\n      \"start_date\": \"2024-01-01\",\n      \"reference_pay_date\": \"2024-01-01\",\n      \"end_date\": \"2024-12-31\",\n      \"first_day\": 15,\n      \"second_day\": 30,\n      \"remote_id\": \"remote_123\"\n    },\n    {\n      \"active\": true,\n      \"bank_closure_strategy\": \"before\",\n      \"frequency\": \"bi_weekly\",\n      \"id\": \"paysch_1234\",\n      \"name\": \"Bi-Weekly Payroll\",\n      \"start_date\": \"2024-01-01\",\n      \"reference_pay_date\": \"2024-01-01\",\n      \"end_date\": \"2024-12-31\",\n      \"first_day\": 15,\n      \"second_day\": 30,\n      \"remote_id\": \"remote_123\"\n    }\n  ],\n  \"state\": \"CA\",\n  \"zip\": \"94108\",\n  \"onboarding_status\": \"employees_invited\",\n  \"dba\": \"string\",\n  \"address_line2\": \"string\",\n  \"phone_number\": \"+14152370005\",\n  \"industry\": \"professional_scientific_and_technical_services\",\n  \"pricing\": {\n    \"platform_fee\": {\n      \"amount\": 4500,\n      \"currency_code\": \"USD\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d87ad617-086e-472a-8415-9559628dd43c",
+          "name": "Get an employer",
+          "request": {
+            "name": "Get an employer",
+            "description": {
+              "content": "Get an employer",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "employers",
+                ":employer_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "employer_id",
+                  "description": "(Required) Employer ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fa013697-55a1-4783-a5f9-b4d425c393ab",
+              "name": "Get an employer",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "employers",
+                    ":employer_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employer_id",
+                      "description": "(Required) Employer ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"address_line1\": \"123 Main St\",\n  \"business_type\": \"c_corp\",\n  \"city\": \"San Francisco\",\n  \"ein\": \"12-3456789\",\n  \"id\": \"empl_01j2j3smtwx656y2tbqm7ty6gr\",\n  \"lifecycle_events\": [\n    {\n      \"event_type\": \"employees_invited\",\n      \"id\": \"lcevent_01j2j3smtwx656y2tbqm7ty6gr\",\n      \"timestamp\": \"2024-11-01T00:00:00Z\"\n    },\n    {\n      \"event_type\": \"employees_invited\",\n      \"id\": \"lcevent_01j2j3smtwx656y2tbqm7ty6gr\",\n      \"timestamp\": \"2024-11-01T00:00:00Z\"\n    }\n  ],\n  \"metadata\": {\n    \"key\": \"value\"\n  },\n  \"name\": \"Acme Corp\",\n  \"pay_schedules\": [\n    {\n      \"active\": true,\n      \"bank_closure_strategy\": \"before\",\n      \"frequency\": \"bi_weekly\",\n      \"id\": \"paysch_1234\",\n      \"name\": \"Bi-Weekly Payroll\",\n      \"start_date\": \"2024-01-01\",\n      \"reference_pay_date\": \"2024-01-01\",\n      \"end_date\": \"2024-12-31\",\n      \"first_day\": 15,\n      \"second_day\": 30,\n      \"remote_id\": \"remote_123\"\n    },\n    {\n      \"active\": true,\n      \"bank_closure_strategy\": \"before\",\n      \"frequency\": \"bi_weekly\",\n      \"id\": \"paysch_1234\",\n      \"name\": \"Bi-Weekly Payroll\",\n      \"start_date\": \"2024-01-01\",\n      \"reference_pay_date\": \"2024-01-01\",\n      \"end_date\": \"2024-12-31\",\n      \"first_day\": 15,\n      \"second_day\": 30,\n      \"remote_id\": \"remote_123\"\n    }\n  ],\n  \"state\": \"CA\",\n  \"zip\": \"94108\",\n  \"onboarding_status\": \"employees_invited\",\n  \"dba\": \"string\",\n  \"address_line2\": \"string\",\n  \"phone_number\": \"+14152370005\",\n  \"industry\": \"professional_scientific_and_technical_services\",\n  \"pricing\": {\n    \"platform_fee\": {\n      \"amount\": 4500,\n      \"currency_code\": \"USD\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "06a99983-7b4e-4808-9223-8738571b2656",
+          "name": "Update an employer",
+          "request": {
+            "name": "Update an employer",
+            "description": {
+              "content": "Update an employer",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "employers",
+                ":employer_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "employer_id",
+                  "description": "(Required) Employer ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"offers_health_insurance_today\": \"<boolean>\",\n  \"current_health_insurance\": {\n    \"individual_deductible\": \"<integer>\",\n    \"individual_oop_max\": \"<integer>\",\n    \"network_type\": \"<string>\",\n    \"metal_tier\": \"<string>\"\n  },\n  \"coverage_start_date\": \"<date>\",\n  \"pricing\": {\n    \"platform_fee\": {\n      \"amount\": \"<float>\",\n      \"currency_code\": \"<string>\"\n    }\n  },\n  \"metadata\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d70bea7e-95d2-46fc-bf02-2889bdfddd33",
+              "name": "Update an employer",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "employers",
+                    ":employer_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employer_id",
+                      "description": "(Required) Employer ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"offers_health_insurance_today\": true,\n  \"current_health_insurance\": {\n    \"individual_deductible\": 1500,\n    \"individual_oop_max\": 5000,\n    \"network_type\": \"hmo\",\n    \"metal_tier\": \"silver\"\n  },\n  \"coverage_start_date\": \"2027-01-01\",\n  \"pricing\": {\n    \"platform_fee\": {\n      \"amount\": 4500,\n      \"currency_code\": \"USD\"\n    }\n  },\n  \"metadata\": {\n    \"key\": \"value\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"address_line1\": \"123 Main St\",\n  \"business_type\": \"c_corp\",\n  \"city\": \"San Francisco\",\n  \"ein\": \"12-3456789\",\n  \"id\": \"empl_01j2j3smtwx656y2tbqm7ty6gr\",\n  \"lifecycle_events\": [\n    {\n      \"event_type\": \"employees_invited\",\n      \"id\": \"lcevent_01j2j3smtwx656y2tbqm7ty6gr\",\n      \"timestamp\": \"2024-11-01T00:00:00Z\"\n    },\n    {\n      \"event_type\": \"employees_invited\",\n      \"id\": \"lcevent_01j2j3smtwx656y2tbqm7ty6gr\",\n      \"timestamp\": \"2024-11-01T00:00:00Z\"\n    }\n  ],\n  \"metadata\": {\n    \"key\": \"value\"\n  },\n  \"name\": \"Acme Corp\",\n  \"pay_schedules\": [\n    {\n      \"active\": true,\n      \"bank_closure_strategy\": \"before\",\n      \"frequency\": \"bi_weekly\",\n      \"id\": \"paysch_1234\",\n      \"name\": \"Bi-Weekly Payroll\",\n      \"start_date\": \"2024-01-01\",\n      \"reference_pay_date\": \"2024-01-01\",\n      \"end_date\": \"2024-12-31\",\n      \"first_day\": 15,\n      \"second_day\": 30,\n      \"remote_id\": \"remote_123\"\n    },\n    {\n      \"active\": true,\n      \"bank_closure_strategy\": \"before\",\n      \"frequency\": \"bi_weekly\",\n      \"id\": \"paysch_1234\",\n      \"name\": \"Bi-Weekly Payroll\",\n      \"start_date\": \"2024-01-01\",\n      \"reference_pay_date\": \"2024-01-01\",\n      \"end_date\": \"2024-12-31\",\n      \"first_day\": 15,\n      \"second_day\": 30,\n      \"remote_id\": \"remote_123\"\n    }\n  ],\n  \"state\": \"CA\",\n  \"zip\": \"94108\",\n  \"onboarding_status\": \"employees_invited\",\n  \"dba\": \"string\",\n  \"address_line2\": \"string\",\n  \"phone_number\": \"+14152370005\",\n  \"industry\": \"professional_scientific_and_technical_services\",\n  \"pricing\": {\n    \"platform_fee\": {\n      \"amount\": 4500,\n      \"currency_code\": \"USD\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "//partners.thatchcloud.com/api/partners/v1/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f5fe193b-8164-4e1f-bf60-c7f78dd50c25",
+    "name": "Thatch for Platforms Deductions Employers API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "<p><a href=\"https://thatch.com/platforms\">Thatch for Platforms</a> is a set of APIs and\nembeddable components, enabling you to effortlessly bring ICHRA (Individual Coverage Health\nReimbursement Arrangement) benefits to your customers.</p><p>Thatch for Platforms is only\navailable to specific partners. Get in touch with us at\n<a href=\"mailto:platforms@thatch.com\">platforms@thatch.com</a> to set up an account.</p>\n",
+      "type": "text/plain"
+    }
+  }
+}

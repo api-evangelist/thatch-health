@@ -5,10 +5,9 @@ status: candidate
 server:
   name: thatch-health
   transport: http
-notes: No official Thatch MCP server was found (docs, npm, GitHub org, MCP registries).
-  This is a candidate tool list derived from the Thatch for Platforms OpenAPI, one
-  tool per operation. The API is partner-gated (Bearer API keys provisioned by
-  platforms@thatch.com).
+notes: No official Thatch MCP server was found (docs, npm, GitHub org, MCP registries). This is a candidate
+  tool list derived from the Thatch for Platforms OpenAPI, one tool per operation. The API is partner-gated
+  (Bearer API keys provisioned by platforms@thatch.com).
 tools:
 - name: get_deductions
   description: List employee payroll deductions for an employer
@@ -53,8 +52,8 @@ tools:
   description: Update an employee
   source_operation: openapi/thatch-health-platforms-openapi-original.yml#patchEmployeesId
 - name: post_employer_onboarding_session
-  description: Create an employer onboarding session (returns a claim_url for the
-    embeddable onboarding iframe)
+  description: Create an employer onboarding session (returns a claim_url for the embeddable onboarding
+    iframe)
   source_operation: openapi/thatch-health-platforms-openapi-original.yml#postEmployerOnboardingSessions
 - name: get_enrollments
   description: List enrollments
@@ -68,3 +67,9 @@ tools:
 - name: get_member
   description: Get a member by ID
   source_operation: openapi/thatch-health-platforms-openapi-original.yml#getMembersId
+deployment:
+  mode: none
+  verified: derived
+  tools: 19
+  checked: '2026-08-12'
+  source: catalog MCP census

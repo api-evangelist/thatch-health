@@ -1,0 +1,179 @@
+{
+  "item": [
+    {
+      "id": "8114ddc9-b266-4580-b0e3-aaebb69fa53f",
+      "name": "Deductions",
+      "description": {
+        "content": "Payroll deductions track the costs of plan premiums\nto employees.\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4e15a808-1f35-4cef-9acd-43a94ee57ef2",
+          "name": "List employee payroll deductions",
+          "request": {
+            "name": "List employee payroll deductions",
+            "description": {
+              "content": "List employee payroll deductions",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "deductions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "employer_id",
+                  "value": "<string>",
+                  "description": "(Required) Employer ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "page[number]",
+                  "value": "1",
+                  "description": "Page number"
+                },
+                {
+                  "disabled": false,
+                  "key": "page[size]",
+                  "value": "20",
+                  "description": "Number of items per page. Must be between 1 and 1,000 (inclusive). Defaults to 20."
+                },
+                {
+                  "disabled": false,
+                  "key": "periods[start_after]",
+                  "value": "<date>",
+                  "description": "Periods with pay date on or after date, in ISO 8601 format"
+                },
+                {
+                  "disabled": false,
+                  "key": "periods[end_before]",
+                  "value": "<date>",
+                  "description": "Periods with pay date on or before date, in ISO 8601 format"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "adb5cb77-6f63-4d01-86c4-169e5ec374b5",
+              "name": "List employee payroll deductions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deductions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "employer_id",
+                      "value": "empl_01j9w59xh2p5d03z0zxgcv2vag"
+                    },
+                    {
+                      "key": "page[number]",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page[size]",
+                      "value": "20"
+                    },
+                    {
+                      "key": "periods[start_after]",
+                      "value": "2024-01-01"
+                    },
+                    {
+                      "key": "periods[end_before]",
+                      "value": "2024-01-01"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"employee_id\": \"employee_01j85kpd8yxkabyrm83d3h2ya3\",\n      \"periods\": [\n        {\n          \"end_date\": \"2024-05-31\",\n          \"start_date\": \"2024-05-01\",\n          \"deductions\": [\n            {\n              \"amount\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"applied_correction\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"amount\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"applied_correction\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"end_date\": \"2024-05-31\",\n          \"start_date\": \"2024-05-01\",\n          \"deductions\": [\n            {\n              \"amount\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"applied_correction\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"amount\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"applied_correction\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"employee_id\": \"employee_01j85kpd8yxkabyrm83d3h2ya3\",\n      \"periods\": [\n        {\n          \"end_date\": \"2024-05-31\",\n          \"start_date\": \"2024-05-01\",\n          \"deductions\": [\n            {\n              \"amount\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"applied_correction\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"amount\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"applied_correction\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"end_date\": \"2024-05-31\",\n          \"start_date\": \"2024-05-01\",\n          \"deductions\": [\n            {\n              \"amount\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"applied_correction\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"amount\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"applied_correction\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ]\n    }\n  ],\n  \"pagination\": {\n    \"current_page\": 1,\n    \"next_page\": 2,\n    \"prev_page\": 3470,\n    \"total_pages\": 3,\n    \"total_records\": 25\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "//partners.thatchcloud.com/api/partners/v1/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "6ca2c976-0b24-49db-be31-639943a42970",
+    "name": "Thatch for Platforms Deductions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "<p><a href=\"https://thatch.com/platforms\">Thatch for Platforms</a> is a set of APIs and\nembeddable components, enabling you to effortlessly bring ICHRA (Individual Coverage Health\nReimbursement Arrangement) benefits to your customers.</p><p>Thatch for Platforms is only\navailable to specific partners. Get in touch with us at\n<a href=\"mailto:platforms@thatch.com\">platforms@thatch.com</a> to set up an account.</p>\n",
+      "type": "text/plain"
+    }
+  }
+}

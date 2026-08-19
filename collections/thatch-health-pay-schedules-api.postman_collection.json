@@ -1,0 +1,631 @@
+{
+  "item": [
+    {
+      "id": "bc2d36fe-bbcf-40e1-8458-ec82a457540a",
+      "name": "Pay Schedules",
+      "description": {
+        "content": "Pay schedules model the cadence of employee paychecks for the purpose of deduction calculations.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9a8b8ef0-f00f-41d1-807c-e20c530f85de",
+          "name": "List pay schedules",
+          "request": {
+            "name": "List pay schedules",
+            "description": {
+              "content": "List pay schedules for an employer",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "employers",
+                ":employer_id",
+                "pay_schedules"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "include_deactivated",
+                  "value": "false",
+                  "description": "Include deactivated pay schedules"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "employer_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "641bc5f5-0508-4909-a29f-874e9e390bc7",
+              "name": "List pay schedules for an employer",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "employers",
+                    ":employer_id",
+                    "pay_schedules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include_deactivated",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employer_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"active\": true,\n    \"bank_closure_strategy\": \"before\",\n    \"frequency\": \"bi_weekly\",\n    \"id\": \"paysch_1234\",\n    \"name\": \"Bi-Weekly Payroll\",\n    \"start_date\": \"2024-01-01\",\n    \"reference_pay_date\": \"2024-01-01\",\n    \"end_date\": \"2024-12-31\",\n    \"first_day\": 15,\n    \"second_day\": 30,\n    \"remote_id\": \"remote_123\"\n  },\n  {\n    \"active\": true,\n    \"bank_closure_strategy\": \"before\",\n    \"frequency\": \"bi_weekly\",\n    \"id\": \"paysch_1234\",\n    \"name\": \"Bi-Weekly Payroll\",\n    \"start_date\": \"2024-01-01\",\n    \"reference_pay_date\": \"2024-01-01\",\n    \"end_date\": \"2024-12-31\",\n    \"first_day\": 15,\n    \"second_day\": 30,\n    \"remote_id\": \"remote_123\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "564d0178-1873-4ce0-9588-b99bb84bc2cd",
+          "name": "Create a pay schedule",
+          "request": {
+            "name": "Create a pay schedule",
+            "description": {
+              "content": "Create a pay schedule",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "employers",
+                ":employer_id",
+                "pay_schedules"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "employer_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"bank_closure_strategy\": \"<string>\",\n  \"frequency\": \"<string>\",\n  \"name\": \"<string>\",\n  \"first_pay_date\": \"<date>\",\n  \"second_pay_date\": \"<date>\",\n  \"start_date\": \"<string>\",\n  \"end_date\": \"<string>\",\n  \"reference_pay_date\": \"<date>\",\n  \"first_day\": \"<integer>\",\n  \"second_day\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9d9ad285-bcac-4f55-bc3b-78719c70dfa7",
+              "name": "Create a pay schedule",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "employers",
+                    ":employer_id",
+                    "pay_schedules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employer_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"bank_closure_strategy\": \"before\",\n  \"frequency\": \"bi_weekly\",\n  \"name\": \"Bi-Weekly Payroll\",\n  \"first_pay_date\": \"2024-01-01\",\n  \"second_pay_date\": \"2024-01-15\",\n  \"start_date\": \"2024-01-01\",\n  \"end_date\": \"2024-12-31\",\n  \"reference_pay_date\": \"2024-01-15\",\n  \"first_day\": 1,\n  \"second_day\": 15\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"active\": true,\n  \"bank_closure_strategy\": \"before\",\n  \"frequency\": \"bi_weekly\",\n  \"id\": \"paysch_1234\",\n  \"name\": \"Bi-Weekly Payroll\",\n  \"start_date\": \"2024-01-01\",\n  \"reference_pay_date\": \"2024-01-01\",\n  \"end_date\": \"2024-12-31\",\n  \"first_day\": 15,\n  \"second_day\": 30,\n  \"remote_id\": \"remote_123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "02068565-b2fd-4648-afc2-5b25eb791c15",
+          "name": "Get a pay schedule",
+          "request": {
+            "name": "Get a pay schedule",
+            "description": {
+              "content": "Get a specific pay schedule",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "employers",
+                ":employer_id",
+                "pay_schedules",
+                ":pay_schedule_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "employer_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "pay_schedule_id",
+                  "description": "(Required) Pay schedule ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f980386b-0cfe-4477-8e13-e63cb5c2189a",
+              "name": "Get a specific pay schedule",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "employers",
+                    ":employer_id",
+                    "pay_schedules",
+                    ":pay_schedule_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employer_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "pay_schedule_id",
+                      "description": "(Required) Pay schedule ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"active\": true,\n  \"bank_closure_strategy\": \"before\",\n  \"frequency\": \"bi_weekly\",\n  \"id\": \"paysch_1234\",\n  \"name\": \"Bi-Weekly Payroll\",\n  \"start_date\": \"2024-01-01\",\n  \"reference_pay_date\": \"2024-01-01\",\n  \"end_date\": \"2024-12-31\",\n  \"first_day\": 15,\n  \"second_day\": 30,\n  \"remote_id\": \"remote_123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6dd7ae7c-19fa-4450-8493-dbdc54ec0122",
+          "name": "Deactivate a pay schedule",
+          "request": {
+            "name": "Deactivate a pay schedule",
+            "description": {
+              "content": "Deactivate a pay schedule",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "employers",
+                ":employer_id",
+                "pay_schedules",
+                ":pay_schedule_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "employer_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "pay_schedule_id",
+                  "description": "(Required) Pay schedule ID"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cba5e01d-e48f-4196-ac94-c6cdabe72d0b",
+              "name": "Successfully deactivated pay schedule",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "employers",
+                    ":employer_id",
+                    "pay_schedules",
+                    ":pay_schedule_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employer_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "pay_schedule_id",
+                      "description": "(Required) Pay schedule ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "db120693-87a1-45fd-b5d8-ca62bd6748f2",
+          "name": "Update a pay schedule",
+          "request": {
+            "name": "Update a pay schedule",
+            "description": {
+              "content": "Update a pay schedule",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "employers",
+                ":employer_id",
+                "pay_schedules",
+                ":pay_schedule_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "employer_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "pay_schedule_id",
+                  "description": "(Required) Pay schedule ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"frequency\": \"<string>\",\n  \"bank_closure_strategy\": \"<string>\",\n  \"first_pay_date\": \"<date>\",\n  \"second_pay_date\": \"<date>\",\n  \"start_date\": \"<string>\",\n  \"end_date\": \"<string>\",\n  \"reference_pay_date\": \"<date>\",\n  \"first_day\": \"<integer>\",\n  \"second_day\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6671856d-42b4-4e1f-9c9b-b149f42fb43a",
+              "name": "Update a pay schedule",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "employers",
+                    ":employer_id",
+                    "pay_schedules",
+                    ":pay_schedule_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employer_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "pay_schedule_id",
+                      "description": "(Required) Pay schedule ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Bi-Weekly Payroll\",\n  \"frequency\": \"bi_weekly\",\n  \"bank_closure_strategy\": \"before\",\n  \"first_pay_date\": \"2024-01-01\",\n  \"second_pay_date\": \"2024-01-15\",\n  \"start_date\": \"2024-01-01\",\n  \"end_date\": \"2024-12-31\",\n  \"reference_pay_date\": \"2024-01-15\",\n  \"first_day\": 1,\n  \"second_day\": 15\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"active\": true,\n  \"bank_closure_strategy\": \"before\",\n  \"frequency\": \"bi_weekly\",\n  \"id\": \"paysch_1234\",\n  \"name\": \"Bi-Weekly Payroll\",\n  \"start_date\": \"2024-01-01\",\n  \"reference_pay_date\": \"2024-01-01\",\n  \"end_date\": \"2024-12-31\",\n  \"first_day\": 15,\n  \"second_day\": 30,\n  \"remote_id\": \"remote_123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "//partners.thatchcloud.com/api/partners/v1/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "473fcd62-8f1c-463f-ba42-c0f842137e16",
+    "name": "Thatch for Platforms Deductions Pay Schedules API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "<p><a href=\"https://thatch.com/platforms\">Thatch for Platforms</a> is a set of APIs and\nembeddable components, enabling you to effortlessly bring ICHRA (Individual Coverage Health\nReimbursement Arrangement) benefits to your customers.</p><p>Thatch for Platforms is only\navailable to specific partners. Get in touch with us at\n<a href=\"mailto:platforms@thatch.com\">platforms@thatch.com</a> to set up an account.</p>\n",
+      "type": "text/plain"
+    }
+  }
+}
