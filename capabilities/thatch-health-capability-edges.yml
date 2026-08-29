@@ -18,41 +18,39 @@ edges:
   capability_id: BC-300.30
   capability_id_l1: BC-300
   capability_name: Compensation & Benefits Management
-  confidence: 0.8
-  evidence: GET /enrollments  'List enrollments'; schemas MedicalPlan, EnrollmentCoverage, EnrollmentStatusEvent,
-    Broker
-  reason: Operations expose health plan enrollments and coverage for employees under an employer-sponsored
-    ICHRA arrangement — squarely benefits administration within Human Capital Management, whoever the
-    buyer is.
+  confidence: 0.85
+  evidence: GET /enrollments 'List enrollments'; schemas 'MedicalPlan, EnrollmentStatusEvent, EnrollmentCoverage,
+    Broker'
+  reason: Health plan enrollment records with medical plan and coverage detail are benefits administration
+    for employees, squarely Compensation & Benefits Management.
 - tag: Deductions
   spec_file: thatch-health-deductions-api-openapi.yml
   capability_id: BC-300.30
   capability_id_l1: BC-300
   capability_name: Compensation & Benefits Management
-  confidence: 0.7
-  evidence: GET /deductions  getDeductions  'List employee payroll deductions'; schemas EmployeeDeduction,
-    DeductionPeriod, DeductionAmount
-  reason: Exposes per-employee benefit-related payroll deduction amounts for an ICHRA health benefits
-    platform, which realises benefits administration within Human Capital Management; ambiguity between
-    benefits administration and payroll administration keeps confidence at 0.7.
+  confidence: 0.75
+  evidence: 'GET /deductions getDeductions List employee payroll deductions; schemas: EmployeeDeduction,
+    DeductionPeriod, DeductionAmount'
+  reason: Exposes per-employee payroll deduction amounts arising from ICHRA health benefits, consumed
+    by payroll/HR platforms. This is benefits administration feeding payroll (BC-300.30); some ambiguity
+    versus BC-300.70 HR Operations/payroll administration.
 - tag: Employees
   spec_file: thatch-health-employees-api-openapi.yml
-  capability_id: BC-300
+  capability_id: BC-300.30
   capability_id_l1: BC-300
-  capability_name: Human Capital Management
-  confidence: 0.7
-  evidence: GET/POST /employees, PATCH /employees/{id}; schemas Employee, Dependent, EnrollmentEvent,
-    EmployeePaySchedule
-  reason: CRUD over employee records including dependents and enrollment events on a health-benefits platform
-    — clearly employee-lifecycle data in HCM, but the evidence straddles employee records (HR operations)
-    and benefits enrollment, so only the L1 is asserted.
-- tag: Pay Schedules
-  spec_file: thatch-health-pay-schedules-api-openapi.yml
-  capability_id: BC-300.70
+  capability_name: Compensation & Benefits Management
+  confidence: 0.75
+  evidence: 'POST /employees Create an employee; schemas: Employee, EnrollmentEvent, Dependent, EmployeePaySchedule'
+  reason: Employee records carrying benefit EnrollmentEvent, Dependent and pay-schedule data on an ICHRA
+    health-benefits platform — administration of employee benefits enrolment. Sub-capability could arguably
+    be HR Operations employee records, hence 0.75.
+- tag: Members
+  spec_file: thatch-health-members-api-openapi.yml
+  capability_id: BC-300.30
   capability_id_l1: BC-300
-  capability_name: HR Operations Management
+  capability_name: Compensation & Benefits Management
   confidence: 0.7
-  evidence: POST /employers/{employer_id}/pay_schedules  'Create a pay schedule'; schema PaySchedule
-  reason: Manages employer pay-period schedules used to time benefit deductions — payroll administration
-    configuration within HR Operations Management; some overlap with benefits administration keeps confidence
-    moderate.
+  evidence: GET /members 'List members'; schemas 'PaginatedMemberList, Member, Money' in a platform bringing
+    'ICHRA ... benefits to your customers'
+  reason: Members are the covered employees/dependents of the ICHRA benefit; read-only member data serves
+    benefits administration rather than clinical or patient-facing capability.
