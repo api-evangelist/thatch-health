@@ -1,0 +1,58 @@
+slug: thatch-health
+provider: Thatch Health
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Healthcare Providers
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 4
+edges:
+- tag: Enrollments
+  spec_file: thatch-health-enrollments-api-openapi.yml
+  capability_id: BC-300.30
+  capability_id_l1: BC-300
+  capability_name: Compensation & Benefits Management
+  confidence: 0.8
+  evidence: GET /enrollments  'List enrollments'; schemas MedicalPlan, EnrollmentCoverage, EnrollmentStatusEvent,
+    Broker
+  reason: Operations expose health plan enrollments and coverage for employees under an employer-sponsored
+    ICHRA arrangement — squarely benefits administration within Human Capital Management, whoever the
+    buyer is.
+- tag: Deductions
+  spec_file: thatch-health-deductions-api-openapi.yml
+  capability_id: BC-300.30
+  capability_id_l1: BC-300
+  capability_name: Compensation & Benefits Management
+  confidence: 0.7
+  evidence: GET /deductions  getDeductions  'List employee payroll deductions'; schemas EmployeeDeduction,
+    DeductionPeriod, DeductionAmount
+  reason: Exposes per-employee benefit-related payroll deduction amounts for an ICHRA health benefits
+    platform, which realises benefits administration within Human Capital Management; ambiguity between
+    benefits administration and payroll administration keeps confidence at 0.7.
+- tag: Employees
+  spec_file: thatch-health-employees-api-openapi.yml
+  capability_id: BC-300
+  capability_id_l1: BC-300
+  capability_name: Human Capital Management
+  confidence: 0.7
+  evidence: GET/POST /employees, PATCH /employees/{id}; schemas Employee, Dependent, EnrollmentEvent,
+    EmployeePaySchedule
+  reason: CRUD over employee records including dependents and enrollment events on a health-benefits platform
+    — clearly employee-lifecycle data in HCM, but the evidence straddles employee records (HR operations)
+    and benefits enrollment, so only the L1 is asserted.
+- tag: Pay Schedules
+  spec_file: thatch-health-pay-schedules-api-openapi.yml
+  capability_id: BC-300.70
+  capability_id_l1: BC-300
+  capability_name: HR Operations Management
+  confidence: 0.7
+  evidence: POST /employers/{employer_id}/pay_schedules  'Create a pay schedule'; schema PaySchedule
+  reason: Manages employer pay-period schedules used to time benefit deductions — payroll administration
+    configuration within HR Operations Management; some overlap with benefits administration keeps confidence
+    moderate.

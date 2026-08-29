@@ -169,6 +169,9 @@ apis:
   - type: APIReference
     url: https://docs.thatch.com/api/
 common:
+- type: CapabilityMap
+  url: capabilities/thatch-health-capability-edges.yml
+  name: Thatch Health Business Capability Map
 - type: Overlay
   url: overlays/thatch-health-platforms-overlay.yaml
 - type: TrustCenter
