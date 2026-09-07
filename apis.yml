@@ -245,3 +245,5 @@ x-enrichment:
   status: enriched
   artifacts_added: 21
   pass: local-v1
+x-parent: thatch
+x-relationship: product

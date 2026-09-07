@@ -1,4 +1,4 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
   title: Thatch for Platforms Deductions Members API
   description: '<p><a href="https://thatch.com/platforms">Thatch for Platforms</a> is a set of APIs and
@@ -12,7 +12,7 @@ info:
     <a href="mailto:platforms@thatch.com">platforms@thatch.com</a> to set up an account.</p>
 
     '
-  version: "1.0"
+  version: '1.0'
 servers:
 - url: //partners.thatchcloud.com/api/partners/v1/
 security:
@@ -80,6 +80,16 @@ paths:
                 $ref: '#/components/schemas/Member'
 components:
   schemas:
+    PaginatedMemberList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Member'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+      description: PaginatedMemberList model
     Member:
       required:
       - address_line1
@@ -202,31 +212,6 @@ components:
           allOf:
           - $ref: '#/components/schemas/Money'
       description: Member model
-    PaginatedMemberList:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Member'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-      description: PaginatedMemberList model
-    Money:
-      required:
-      - amount
-      - currency_code
-      type: object
-      properties:
-        amount:
-          type: integer
-          description: Amount as an integer in the smallest currency unit (e.g. 100 cents for $1.00)
-          format: int32
-          example: 1099
-        currency_code:
-          type: string
-          description: Three-letter ISO currency code
-          example: USD
     Pagination:
       required:
       - current_page
@@ -252,16 +237,33 @@ components:
           format: int32
           example: 3
         next_page:
-          type: integer
+          type:
+          - integer
+          - 'null'
           description: Next page number
           format: int32
-          nullable: true
           example: 2
         prev_page:
-          type: integer
+          type:
+          - integer
+          - 'null'
           description: Previous page number
           format: int32
-          nullable: true
+    Money:
+      required:
+      - amount
+      - currency_code
+      type: object
+      properties:
+        amount:
+          type: integer
+          description: Amount as an integer in the smallest currency unit (e.g. 100 cents for $1.00)
+          format: int32
+          example: 1099
+        currency_code:
+          type: string
+          description: Three-letter ISO currency code
+          example: USD
   securitySchemes:
     Bearer:
       type: apiKey

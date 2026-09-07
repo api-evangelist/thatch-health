@@ -1,4 +1,4 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
   title: Thatch for Platforms Deductions Employer onboarding sessions API
   description: '<p><a href="https://thatch.com/platforms">Thatch for Platforms</a> is a set of APIs and
@@ -12,7 +12,7 @@ info:
     <a href="mailto:platforms@thatch.com">platforms@thatch.com</a> to set up an account.</p>
 
     '
-  version: "1.0"
+  version: '1.0'
 servers:
 - url: //partners.thatchcloud.com/api/partners/v1/
 security:

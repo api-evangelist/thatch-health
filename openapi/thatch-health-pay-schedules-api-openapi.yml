@@ -1,4 +1,4 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
   title: Thatch for Platforms Deductions Pay Schedules API
   description: '<p><a href="https://thatch.com/platforms">Thatch for Platforms</a> is a set of APIs and
@@ -12,7 +12,7 @@ info:
     <a href="mailto:platforms@thatch.com">platforms@thatch.com</a> to set up an account.</p>
 
     '
-  version: "1.0"
+  version: '1.0'
 servers:
 - url: //partners.thatchcloud.com/api/partners/v1/
 security:
@@ -312,10 +312,11 @@ components:
           description: Pay schedule name
           example: Bi-Weekly Payroll
         reference_pay_date:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Reference pay date for weekly/bi-weekly schedules
           format: date
-          nullable: true
           example: '2024-01-01'
         start_date:
           type: string
@@ -323,10 +324,11 @@ components:
           format: date
           example: '2024-01-01'
         end_date:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Pay schedule end date
           format: date
-          nullable: true
           example: '2024-12-31'
         frequency:
           type: string
@@ -338,16 +340,18 @@ components:
           - bi_weekly
           - weekly
         first_day:
-          type: integer
+          type:
+          - integer
+          - 'null'
           description: First pay day of the month (1-31, required for monthly/semi-monthly)
           format: int32
-          nullable: true
           example: 15
         second_day:
-          type: integer
+          type:
+          - integer
+          - 'null'
           description: Second pay day of the month (1-31, required for semi-monthly)
           format: int32
-          nullable: true
           example: 30
         bank_closure_strategy:
           type: string
@@ -359,9 +363,10 @@ components:
           - closest
           - ignore
         remote_id:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Remote ID from payroll integration
-          nullable: true
           example: remote_123
         active:
           type: boolean

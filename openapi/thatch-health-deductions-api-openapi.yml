@@ -1,4 +1,4 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
   title: Thatch for Platforms Deductions API
   description: '<p><a href="https://thatch.com/platforms">Thatch for Platforms</a> is a set of APIs and
@@ -12,7 +12,7 @@ info:
     <a href="mailto:platforms@thatch.com">platforms@thatch.com</a> to set up an account.</p>
 
     '
-  version: "1.0"
+  version: '1.0'
 servers:
 - url: //partners.thatchcloud.com/api/partners/v1/
 security:
@@ -80,25 +80,6 @@ paths:
                 $ref: '#/components/schemas/PaginatedEmployeeDeductionsList'
 components:
   schemas:
-    DeductionPeriod:
-      required:
-      - end_date
-      - start_date
-      type: object
-      properties:
-        start_date:
-          type: string
-          description: Start date of the period (aligned to the start of the month)
-          example: '2024-05-01'
-        end_date:
-          type: string
-          description: End date of the period (aligned to the end of the month)
-          example: '2024-05-31'
-        deductions:
-          type: array
-          description: Deductions for the period.  There should always be two DeductionAmount records. In general, one will be $0 and the other will be non-zero. However, employees could end up with only a portion of their deduction being eligible to be Section 125 pre-tax. If that happens, the remainder would be post-tax.
-          items:
-            $ref: '#/components/schemas/DeductionAmount'
     DeductionAmount:
       required:
       - amount
@@ -122,21 +103,6 @@ components:
           description: Applied correction
           allOf:
           - $ref: '#/components/schemas/Money'
-    Money:
-      required:
-      - amount
-      - currency_code
-      type: object
-      properties:
-        amount:
-          type: integer
-          description: Amount as an integer in the smallest currency unit (e.g. 100 cents for $1.00)
-          format: int32
-          example: 1099
-        currency_code:
-          type: string
-          description: Three-letter ISO currency code
-          example: USD
     EmployeeDeduction:
       required:
       - employee_id
@@ -150,6 +116,25 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/DeductionPeriod'
+    DeductionPeriod:
+      required:
+      - end_date
+      - start_date
+      type: object
+      properties:
+        start_date:
+          type: string
+          description: Start date of the period (aligned to the start of the month)
+          example: '2024-05-01'
+        end_date:
+          type: string
+          description: End date of the period (aligned to the end of the month)
+          example: '2024-05-31'
+        deductions:
+          type: array
+          description: Deductions for the period.  There should always be two DeductionAmount records. In general, one will be $0 and the other will be non-zero. However, employees could end up with only a portion of their deduction being eligible to be Section 125 pre-tax. If that happens, the remainder would be post-tax.
+          items:
+            $ref: '#/components/schemas/DeductionAmount'
     Pagination:
       required:
       - current_page
@@ -175,16 +160,18 @@ components:
           format: int32
           example: 3
         next_page:
-          type: integer
+          type:
+          - integer
+          - 'null'
           description: Next page number
           format: int32
-          nullable: true
           example: 2
         prev_page:
-          type: integer
+          type:
+          - integer
+          - 'null'
           description: Previous page number
           format: int32
-          nullable: true
     PaginatedEmployeeDeductionsList:
       type: object
       properties:
@@ -195,6 +182,21 @@ components:
         pagination:
           $ref: '#/components/schemas/Pagination'
       description: PaginatedEmployeeDeductionsList model
+    Money:
+      required:
+      - amount
+      - currency_code
+      type: object
+      properties:
+        amount:
+          type: integer
+          description: Amount as an integer in the smallest currency unit (e.g. 100 cents for $1.00)
+          format: int32
+          example: 1099
+        currency_code:
+          type: string
+          description: Three-letter ISO currency code
+          example: USD
   securitySchemes:
     Bearer:
       type: apiKey

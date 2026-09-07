@@ -1,4 +1,4 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
   title: Thatch for Platforms Deductions Enrollments API
   description: '<p><a href="https://thatch.com/platforms">Thatch for Platforms</a> is a set of APIs and
@@ -12,7 +12,7 @@ info:
     <a href="mailto:platforms@thatch.com">platforms@thatch.com</a> to set up an account.</p>
 
     '
-  version: "1.0"
+  version: '1.0'
 servers:
 - url: //partners.thatchcloud.com/api/partners/v1/
 security:
@@ -126,16 +126,27 @@ components:
         sbc_url:
           type: string
           description: URL to the plan's SBC document
-    PaginatedEnrollmentList:
+    EnrollmentStatusEvent:
+      required:
+      - status
+      - timestamp
       type: object
       properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Enrollment'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-      description: PaginatedEnrollmentList model
+        status:
+          type: string
+          description: The status that the enrollment changed to
+          example: completed
+          enum:
+          - in_member_cart
+          - member_confirmed
+          - submission_processing
+          - carrier_processing
+          - completed
+          - canceled
+        timestamp:
+          type: string
+          description: The ISO 8601 date and time the enrollment's status changed
+          example: '2024-11-01T00:00:00Z'
     Enrollment:
       required:
       - broker
@@ -210,6 +221,43 @@ components:
           items:
             $ref: '#/components/schemas/EnrollmentCoverage'
       description: Enrollment model
+    Pagination:
+      required:
+      - current_page
+      - next_page
+      - prev_page
+      - total_pages
+      - total_records
+      type: object
+      properties:
+        total_records:
+          type: integer
+          description: Total number of records
+          format: int32
+          example: 25
+        current_page:
+          type: integer
+          description: Current page number
+          format: int32
+          example: 1
+        total_pages:
+          type: integer
+          description: Total number of pages
+          format: int32
+          example: 3
+        next_page:
+          type:
+          - integer
+          - 'null'
+          description: Next page number
+          format: int32
+          example: 2
+        prev_page:
+          type:
+          - integer
+          - 'null'
+          description: Previous page number
+          format: int32
     Broker:
       required:
       - name
@@ -224,6 +272,16 @@ components:
           type: string
           description: The broker's National Producer Number (NPN)
           example: '20782309'
+    PaginatedEnrollmentList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Enrollment'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+      description: PaginatedEnrollmentList model
     EnrollmentCoverage:
       required:
       - date_of_birth
@@ -287,62 +345,6 @@ components:
           type: string
           description: Three-letter ISO currency code
           example: USD
-    EnrollmentStatusEvent:
-      required:
-      - status
-      - timestamp
-      type: object
-      properties:
-        status:
-          type: string
-          description: The status that the enrollment changed to
-          example: completed
-          enum:
-          - in_member_cart
-          - member_confirmed
-          - submission_processing
-          - carrier_processing
-          - completed
-          - canceled
-        timestamp:
-          type: string
-          description: The ISO 8601 date and time the enrollment's status changed
-          example: '2024-11-01T00:00:00Z'
-    Pagination:
-      required:
-      - current_page
-      - next_page
-      - prev_page
-      - total_pages
-      - total_records
-      type: object
-      properties:
-        total_records:
-          type: integer
-          description: Total number of records
-          format: int32
-          example: 25
-        current_page:
-          type: integer
-          description: Current page number
-          format: int32
-          example: 1
-        total_pages:
-          type: integer
-          description: Total number of pages
-          format: int32
-          example: 3
-        next_page:
-          type: integer
-          description: Next page number
-          format: int32
-          nullable: true
-          example: 2
-        prev_page:
-          type: integer
-          description: Previous page number
-          format: int32
-          nullable: true
   securitySchemes:
     Bearer:
       type: apiKey
