@@ -171,6 +171,12 @@ apis:
   - type: APIReference
     url: https://docs.thatch.com/api/
 common:
+- type: OpenAPI
+  url: openapi/_original/thatch-health-partners-openapi.yml
+- type: ErrorCatalog
+  url: errors/thatch-health-problem-types.yml
+- type: AgenticAccess
+  url: agentic-access/thatch-health-agentic-access.yml
 - type: CapabilityMap
   url: capabilities/thatch-health-capability-edges.yml
   name: Thatch Health Business Capability Map
@@ -245,5 +251,3 @@ x-enrichment:
   status: enriched
   artifacts_added: 21
   pass: local-v1
-x-parent: thatch
-x-relationship: product
