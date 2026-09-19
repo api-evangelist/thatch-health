@@ -52,6 +52,15 @@ tags:
 - Insurance
 - Payroll
 - Embedded Benefits
+- Human Resources
+tags_raw:
+- Company
+- Healthcare
+- Health Benefits
+- ICHRA
+- Insurance
+- Payroll
+- Embedded Benefits
 - HR
 apis:
 - aid: thatch-health:thatch-health-deductions-api
@@ -130,6 +139,8 @@ apis:
   humanURL: https://docs.thatch.com/api/
   baseURL: https://partners.thatchcloud.com/api/partners/v1
   tags:
+  - Enrollment
+  tags_raw:
   - Enrollments
   properties:
   - type: OpenAPI
