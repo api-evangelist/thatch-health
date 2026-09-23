@@ -1,20 +1,18 @@
 openapi: 3.2.0
 info:
-  title: Thatch for Platforms Deductions Pay Schedules API
-  description: '<p><a href="https://thatch.com/platforms">Thatch for Platforms</a> is a set of APIs and
-
-    embeddable components, enabling you to effortlessly bring ICHRA (Individual Coverage Health
-
-    Reimbursement Arrangement) benefits to your customers.</p><p>Thatch for Platforms is only
-
-    available to specific partners. Get in touch with us at
-
-    <a href="mailto:platforms@thatch.com">platforms@thatch.com</a> to set up an account.</p>
-
-    '
-  version: '1.0'
+  title: Thatch for Platforms Pay Schedules API
+  version: v1
+  description: Thatch for Platforms is a set of REST APIs and embeddable JavaScript components that let partners bring ICHRA (Individual Coverage Health Reimbursement Arrangement) benefits to their customers.
+  contact:
+    name: Thatch for Platforms
+    email: platforms@thatch.com
+    url: https://docs.thatch.com/
+  x-apisjson-generated: '2026-07-21'
+  x-apisjson-method: generated
+  x-apisjson-source: https://docs.thatch.com/api/
 servers:
-- url: //partners.thatchcloud.com/api/partners/v1/
+- url: https://partners.thatchcloud.com/api/partners/v1
+  description: Production
 security:
 - Bearer: []
 tags:
@@ -22,18 +20,38 @@ tags:
   description: Pay schedules model the cadence of employee paychecks for the purpose of deduction calculations.
 paths:
   /employers/{employer_id}/pay_schedules:
+    parameters:
+    - name: employer_id
+      in: path
+      required: true
+      schema:
+        type: string
+    post:
+      tags:
+      - Pay Schedules
+      operationId: createPaySchedule
+      summary: Create a pay schedule
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PayScheduleCreate'
+      responses:
+        '201':
+          description: Create a pay schedule
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaySchedule'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
     get:
       tags:
       - Pay Schedules
-      summary: List pay schedules
-      description: List pay schedules for an employer
-      operationId: getEmployersEmployerIdPaySchedules
+      operationId: listPaySchedules
+      summary: List pay schedules for an employer
       parameters:
-      - name: employer_id
-        in: path
-        required: true
-        schema:
-          type: string
       - name: include_deactivated
         in: query
         description: Include deactivated pay schedules
@@ -49,51 +67,26 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/PaySchedule'
-    post:
-      tags:
-      - Pay Schedules
-      summary: Create a pay schedule
-      description: Create a pay schedule
-      operationId: postEmployersEmployerIdPaySchedules
-      parameters:
-      - name: employer_id
-        in: path
-        required: true
-        schema:
-          type: string
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/postEmployersEmployerIdPaySchedules'
-        required: true
-      responses:
-        '201':
-          description: Create a pay schedule
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/PaySchedule'
-      x-codegen-request-body-name: postEmployersEmployerIdPaySchedules
+        '401':
+          $ref: '#/components/responses/Unauthorized'
   /employers/{employer_id}/pay_schedules/{pay_schedule_id}:
+    parameters:
+    - name: employer_id
+      in: path
+      required: true
+      schema:
+        type: string
+    - name: pay_schedule_id
+      in: path
+      required: true
+      description: Pay schedule ID
+      schema:
+        type: string
     get:
       tags:
       - Pay Schedules
-      summary: Get a pay schedule
-      description: Get a specific pay schedule
-      operationId: getEmployersEmployerIdPaySchedulesPayScheduleId
-      parameters:
-      - name: employer_id
-        in: path
-        required: true
-        schema:
-          type: string
-      - name: pay_schedule_id
-        in: path
-        description: Pay schedule ID
-        required: true
-        schema:
-          type: string
+      operationId: getPaySchedule
+      summary: Get a specific pay schedule
       responses:
         '200':
           description: Get a specific pay schedule
@@ -101,52 +94,21 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PaySchedule'
-    delete:
-      tags:
-      - Pay Schedules
-      summary: Deactivate a pay schedule
-      description: Deactivate a pay schedule
-      operationId: deleteEmployersEmployerIdPaySchedulesPayScheduleId
-      parameters:
-      - name: employer_id
-        in: path
-        required: true
-        schema:
-          type: string
-      - name: pay_schedule_id
-        in: path
-        description: Pay schedule ID
-        required: true
-        schema:
-          type: string
-      responses:
-        '204':
-          description: Successfully deactivated pay schedule
-          content: {}
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
     patch:
       tags:
       - Pay Schedules
+      operationId: updatePaySchedule
       summary: Update a pay schedule
-      description: Update a pay schedule
-      operationId: patchEmployersEmployerIdPaySchedulesPayScheduleId
-      parameters:
-      - name: employer_id
-        in: path
-        required: true
-        schema:
-          type: string
-      - name: pay_schedule_id
-        in: path
-        description: Pay schedule ID
-        required: true
-        schema:
-          type: string
       requestBody:
+        required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/patchEmployersEmployerIdPaySchedulesPayScheduleId'
-        required: true
+              $ref: '#/components/schemas/PayScheduleUpdate'
       responses:
         '200':
           description: Update a pay schedule
@@ -154,229 +116,171 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PaySchedule'
-      x-codegen-request-body-name: patchEmployersEmployerIdPaySchedulesPayScheduleId
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      tags:
+      - Pay Schedules
+      operationId: deactivatePaySchedule
+      summary: Deactivate a pay schedule
+      responses:
+        '204':
+          description: Successfully deactivated pay schedule
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    postEmployersEmployerIdPaySchedules:
-      required:
-      - bank_closure_strategy
-      - frequency
-      - name
-      type: object
-      properties:
-        name:
-          type: string
-          description: Readable name for the pay schedule
-          example: Bi-Weekly Payroll
-        frequency:
-          type: string
-          description: Pay frequency
-          example: bi_weekly
-          enum:
-          - monthly
-          - semi_monthly
-          - bi_weekly
-          - weekly
-        bank_closure_strategy:
-          type: string
-          description: Strategy for handling bank closures
-          example: before
-          enum:
-          - before
-          - after
-          - closest
-          - ignore
-        first_pay_date:
-          type: string
-          description: First pay date of the schedule
-          format: date
-          example: '2024-01-01'
-        second_pay_date:
-          type: string
-          description: Second pay date of the schedule (only required for semi-monthly schedules)
-          format: date
-          example: '2024-01-15'
-        start_date:
-          type: string
-          description: Start date for the pay schedule (defaults to employer's earliest coverage start date on creation)
-          example: '2024-01-01'
-        end_date:
-          type: string
-          description: End date for the pay schedule
-          example: '2024-12-31'
-        reference_pay_date:
-          type: string
-          description: Deprecated - use first_pay_date instead
-          format: date
-          example: '2024-01-15'
-          deprecated: true
-        first_day:
-          maximum: 31
-          minimum: 1
-          type: integer
-          description: Deprecated - use first_pay_date instead
-          format: int32
-          example: 1
-          deprecated: true
-        second_day:
-          maximum: 31
-          minimum: 1
-          type: integer
-          description: Deprecated - use second_pay_date instead
-          format: int32
-          example: 15
-          deprecated: true
-      description: Create a pay schedule
-    patchEmployersEmployerIdPaySchedulesPayScheduleId:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Readable name for the pay schedule
-          example: Bi-Weekly Payroll
-        frequency:
-          type: string
-          description: Pay frequency
-          example: bi_weekly
-          enum:
-          - monthly
-          - semi_monthly
-          - bi_weekly
-          - weekly
-        bank_closure_strategy:
-          type: string
-          description: Strategy for handling bank closures
-          example: before
-          enum:
-          - before
-          - after
-          - closest
-          - ignore
-        first_pay_date:
-          type: string
-          description: First pay date of the schedule
-          format: date
-          example: '2024-01-01'
-        second_pay_date:
-          type: string
-          description: Second pay date of the schedule (only required for semi-monthly schedules)
-          format: date
-          example: '2024-01-15'
-        start_date:
-          type: string
-          description: Start date for the pay schedule (defaults to employer's earliest coverage start date on creation)
-          example: '2024-01-01'
-        end_date:
-          type: string
-          description: End date for the pay schedule
-          example: '2024-12-31'
-        reference_pay_date:
-          type: string
-          description: Deprecated - use first_pay_date instead
-          format: date
-          example: '2024-01-15'
-          deprecated: true
-        first_day:
-          maximum: 31
-          minimum: 1
-          type: integer
-          description: Deprecated - use first_pay_date instead
-          format: int32
-          example: 1
-          deprecated: true
-        second_day:
-          maximum: 31
-          minimum: 1
-          type: integer
-          description: Deprecated - use second_pay_date instead
-          format: int32
-          example: 15
-          deprecated: true
-      description: Update a pay schedule
     PaySchedule:
-      required:
-      - active
-      - bank_closure_strategy
-      - frequency
-      - id
-      - name
-      - start_date
       type: object
       properties:
         id:
           type: string
-          description: Pay schedule ID
           example: paysch_1234
         name:
           type: string
-          description: Pay schedule name
           example: Bi-Weekly Payroll
         reference_pay_date:
-          type:
-          - string
-          - 'null'
-          description: Reference pay date for weekly/bi-weekly schedules
+          type: string
           format: date
-          example: '2024-01-01'
+          deprecated: true
         start_date:
           type: string
-          description: Pay schedule start date
           format: date
-          example: '2024-01-01'
         end_date:
-          type:
-          - string
-          - 'null'
-          description: Pay schedule end date
+          type: string
           format: date
-          example: '2024-12-31'
         frequency:
           type: string
-          description: Pay schedule frequency
           example: bi_weekly
-          enum:
-          - monthly
-          - semi_monthly
-          - bi_weekly
-          - weekly
         first_day:
-          type:
-          - integer
-          - 'null'
-          description: First pay day of the month (1-31, required for monthly/semi-monthly)
-          format: int32
-          example: 15
+          type: integer
+          deprecated: true
         second_day:
-          type:
-          - integer
-          - 'null'
-          description: Second pay day of the month (1-31, required for semi-monthly)
-          format: int32
-          example: 30
+          type: integer
+          deprecated: true
         bank_closure_strategy:
           type: string
-          description: Strategy for handling bank closures (before/after/closest/ignore)
           example: before
+        remote_id:
+          type: string
+          example: remote_123
+        active:
+          type: boolean
+    PayScheduleCreate:
+      type: object
+      required:
+      - bank_closure_strategy
+      - frequency
+      - name
+      properties:
+        bank_closure_strategy:
+          type: string
           enum:
           - before
           - after
           - closest
           - ignore
-        remote_id:
-          type:
-          - string
-          - 'null'
-          description: Remote ID from payroll integration
-          example: remote_123
-        active:
-          type: boolean
-          description: Whether the pay schedule is active
-          example: true
-      description: PaySchedule model
+          description: Strategy for handling bank closures
+        frequency:
+          type: string
+          enum:
+          - monthly
+          - semi_monthly
+          - bi_weekly
+          - weekly
+          description: Pay frequency
+        name:
+          type: string
+          description: Readable name for the pay schedule
+        first_pay_date:
+          type: string
+          format: date
+          description: First pay date of the schedule
+        second_pay_date:
+          type: string
+          format: date
+          description: Second pay date of the schedule (only required for semi-monthly schedules)
+        start_date:
+          type: string
+          description: Start date for the pay schedule (defaults to employer's earliest coverage start date on creation)
+        end_date:
+          type: string
+          description: End date for the pay schedule
+        reference_pay_date:
+          type: string
+          format: date
+          deprecated: true
+          description: Deprecated - use first_pay_date instead
+        first_day:
+          type: integer
+          format: int32
+          minimum: 1
+          maximum: 31
+          deprecated: true
+          description: Deprecated - use first_pay_date instead
+        second_day:
+          type: integer
+          format: int32
+          minimum: 1
+          maximum: 31
+          deprecated: true
+          description: Deprecated - use second_pay_date instead
+    PayScheduleUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+        frequency:
+          type: string
+          enum:
+          - monthly
+          - semi_monthly
+          - bi_weekly
+          - weekly
+        bank_closure_strategy:
+          type: string
+          enum:
+          - before
+          - after
+          - closest
+          - ignore
+        first_pay_date:
+          type: string
+          format: date
+        second_pay_date:
+          type: string
+          format: date
+        start_date:
+          type: string
+        end_date:
+          type: string
+        reference_pay_date:
+          type: string
+          format: date
+          deprecated: true
+        first_day:
+          type: integer
+          format: int32
+          minimum: 1
+          maximum: 31
+          deprecated: true
+        second_day:
+          type: integer
+          format: int32
+          minimum: 1
+          maximum: 31
+          deprecated: true
+  responses:
+    Unauthorized:
+      description: Authentication failed or API key missing/invalid.
+    NotFound:
+      description: The requested resource was not found.
   securitySchemes:
     Bearer:
-      type: apiKey
-      description: Provide your API key in a `Bearer` token header (as in, **Bearer sk_123**).
-      name: Authorization
-      in: header
-x-original-swagger-version: '2.0'
+      type: http
+      scheme: bearer
+      description: 'All requests are authenticated with your API key using Bearer token authentication. Include the header `Authorization: Bearer <YOUR_API_KEY>`. Generate an API key in the Thatch dashboard.'

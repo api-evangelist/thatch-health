@@ -1,13 +1,7 @@
 {
   "provider": "thatch-health",
   "sources": [
-    "thatch-health-deductions-api-openapi.yml",
-    "thatch-health-employees-api-openapi.yml",
-    "thatch-health-employer-onboarding-sessions-api-openapi.yml",
-    "thatch-health-employers-api-openapi.yml",
-    "thatch-health-enrollments-api-openapi.yml",
-    "thatch-health-members-api-openapi.yml",
-    "thatch-health-pay-schedules-api-openapi.yml"
+    "_original/thatch-health-partners-openapi.yml"
   ],
   "outputs": [
     "thatch-health-deductions-api-openapi.yml",
@@ -22,14 +16,19 @@
   "errors": [],
   "warnings": [],
   "notes": [
-    "thatch-health-deductions-api-openapi.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
-    "thatch-health-employees-api-openapi.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
-    "thatch-health-employer-onboarding-sessions-api-openapi.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
-    "thatch-health-employers-api-openapi.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
-    "thatch-health-enrollments-api-openapi.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
-    "thatch-health-members-api-openapi.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
-    "thatch-health-pay-schedules-api-openapi.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "1 archived document(s) dropped as subsets of other archived documents",
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "thatch-health-partners-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
     "apis.yml register: already-registered"
   ],
-  "skipped": []
+  "skipped": [
+    "_original/thatch-health-platforms-openapi-original.yml: archived document superseded by a larger archived document",
+    "thatch-health-deductions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "thatch-health-employees-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "thatch-health-employer-onboarding-sessions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "thatch-health-employers-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "thatch-health-enrollments-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "thatch-health-members-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "thatch-health-pay-schedules-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
