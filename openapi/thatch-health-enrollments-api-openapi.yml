@@ -90,74 +90,6 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    StatusEvent:
-      type: object
-      properties:
-        status:
-          type: string
-          example: completed
-        timestamp:
-          type: string
-          format: date-time
-    EnrollmentCoverage:
-      type: object
-      properties:
-        first_name:
-          type: string
-        last_name:
-          type: string
-        relationship:
-          type: string
-          example: self
-        date_of_birth:
-          type: string
-          format: date
-        gender:
-          type: string
-          example: female
-        start_date:
-          type: string
-          format: date
-        end_date:
-          type: string
-          format: date
-    Broker:
-      type: object
-      properties:
-        name:
-          type: string
-          example: Thatch Health Insurance Services LLC
-        npn:
-          type: string
-          example: '20782309'
-    Plan:
-      type: object
-      properties:
-        id:
-          type: string
-          example: mdpln_01j7h53nf2j0hc5a235b6xmxn4
-        name:
-          type: string
-          example: Anthem Bronze 60 D HMO
-        carrier_name:
-          type: string
-          example: Anthem
-        hsa_eligible:
-          type: boolean
-        logo_url:
-          type: string
-        sbc_url:
-          type: string
-    Money:
-      type: object
-      description: A monetary amount in minor units with an ISO 4217 currency code.
-      properties:
-        amount:
-          type: integer
-          description: Amount in the smallest currency unit (e.g. cents).
-        currency_code:
-          type: string
-          example: USD
     Pagination:
       type: object
       properties:
@@ -176,6 +108,15 @@ components:
         prev_page:
           type: integer
           example: 0
+    Broker:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Thatch Health Insurance Services LLC
+        npn:
+          type: string
+          example: '20782309'
     Enrollment:
       type: object
       properties:
@@ -219,6 +160,65 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/EnrollmentCoverage'
+    Plan:
+      type: object
+      properties:
+        id:
+          type: string
+          example: mdpln_01j7h53nf2j0hc5a235b6xmxn4
+        name:
+          type: string
+          example: Anthem Bronze 60 D HMO
+        carrier_name:
+          type: string
+          example: Anthem
+        hsa_eligible:
+          type: boolean
+        logo_url:
+          type: string
+        sbc_url:
+          type: string
+    Money:
+      type: object
+      description: A monetary amount in minor units with an ISO 4217 currency code.
+      properties:
+        amount:
+          type: integer
+          description: Amount in the smallest currency unit (e.g. cents).
+        currency_code:
+          type: string
+          example: USD
+    StatusEvent:
+      type: object
+      properties:
+        status:
+          type: string
+          example: completed
+        timestamp:
+          type: string
+          format: date-time
+    EnrollmentCoverage:
+      type: object
+      properties:
+        first_name:
+          type: string
+        last_name:
+          type: string
+        relationship:
+          type: string
+          example: self
+        date_of_birth:
+          type: string
+          format: date
+        gender:
+          type: string
+          example: female
+        start_date:
+          type: string
+          format: date
+        end_date:
+          type: string
+          format: date
   parameters:
     PageNumber:
       name: page[number]

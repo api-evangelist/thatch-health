@@ -69,32 +69,25 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  responses:
-    Unauthorized:
-      description: Authentication failed or API key missing/invalid.
-    NotFound:
-      description: The requested resource was not found.
-  parameters:
-    PageNumber:
-      name: page[number]
-      in: query
-      description: Page number
-      schema:
-        type: integer
-        format: int32
-        minimum: 1
-        default: 1
-    PageSize:
-      name: page[size]
-      in: query
-      description: Number of items per page. Must be between 1 and 1,000 (inclusive). Defaults to 20.
-      schema:
-        type: integer
-        format: int32
-        minimum: 1
-        maximum: 1000
-        default: 20
   schemas:
+    Pagination:
+      type: object
+      properties:
+        total_records:
+          type: integer
+          example: 25
+        current_page:
+          type: integer
+          example: 1
+        total_pages:
+          type: integer
+          example: 3
+        next_page:
+          type: integer
+          example: 2
+        prev_page:
+          type: integer
+          example: 0
     Member:
       type: object
       properties:
@@ -135,24 +128,31 @@ components:
         currency_code:
           type: string
           example: USD
-    Pagination:
-      type: object
-      properties:
-        total_records:
-          type: integer
-          example: 25
-        current_page:
-          type: integer
-          example: 1
-        total_pages:
-          type: integer
-          example: 3
-        next_page:
-          type: integer
-          example: 2
-        prev_page:
-          type: integer
-          example: 0
+  parameters:
+    PageNumber:
+      name: page[number]
+      in: query
+      description: Page number
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+        default: 1
+    PageSize:
+      name: page[size]
+      in: query
+      description: Number of items per page. Must be between 1 and 1,000 (inclusive). Defaults to 20.
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+        maximum: 1000
+        default: 20
+  responses:
+    Unauthorized:
+      description: Authentication failed or API key missing/invalid.
+    NotFound:
+      description: The requested resource was not found.
   securitySchemes:
     Bearer:
       type: http

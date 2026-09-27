@@ -170,6 +170,51 @@ components:
           example: remote_123
         active:
           type: boolean
+    PayScheduleUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+        frequency:
+          type: string
+          enum:
+          - monthly
+          - semi_monthly
+          - bi_weekly
+          - weekly
+        bank_closure_strategy:
+          type: string
+          enum:
+          - before
+          - after
+          - closest
+          - ignore
+        first_pay_date:
+          type: string
+          format: date
+        second_pay_date:
+          type: string
+          format: date
+        start_date:
+          type: string
+        end_date:
+          type: string
+        reference_pay_date:
+          type: string
+          format: date
+          deprecated: true
+        first_day:
+          type: integer
+          format: int32
+          minimum: 1
+          maximum: 31
+          deprecated: true
+        second_day:
+          type: integer
+          format: int32
+          minimum: 1
+          maximum: 31
+          deprecated: true
     PayScheduleCreate:
       type: object
       required:
@@ -229,51 +274,6 @@ components:
           maximum: 31
           deprecated: true
           description: Deprecated - use second_pay_date instead
-    PayScheduleUpdate:
-      type: object
-      properties:
-        name:
-          type: string
-        frequency:
-          type: string
-          enum:
-          - monthly
-          - semi_monthly
-          - bi_weekly
-          - weekly
-        bank_closure_strategy:
-          type: string
-          enum:
-          - before
-          - after
-          - closest
-          - ignore
-        first_pay_date:
-          type: string
-          format: date
-        second_pay_date:
-          type: string
-          format: date
-        start_date:
-          type: string
-        end_date:
-          type: string
-        reference_pay_date:
-          type: string
-          format: date
-          deprecated: true
-        first_day:
-          type: integer
-          format: int32
-          minimum: 1
-          maximum: 31
-          deprecated: true
-        second_day:
-          type: integer
-          format: int32
-          minimum: 1
-          maximum: 31
-          deprecated: true
   responses:
     Unauthorized:
       description: Authentication failed or API key missing/invalid.

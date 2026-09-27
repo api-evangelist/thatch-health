@@ -112,77 +112,58 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    Metadata:
+    CurrentHealthInsurance:
       type: object
-      description: Set of key-value pairs that you can attach to an API resource for storing additional structured information. Individual keys can be unset by posting an empty string value; all keys can be unset by posting an empty object.
-      additionalProperties:
-        type: string
-    Employer:
+      description: Current health insurance plan details
+      properties:
+        individual_deductible:
+          type: integer
+          example: 1500
+        individual_oop_max:
+          type: integer
+          example: 5000
+        network_type:
+          type: string
+          example: hmo
+        metal_tier:
+          type: string
+          example: silver
+    PaySchedule:
       type: object
       properties:
         id:
           type: string
-          example: empl_01j2j3smtwx656y2tbqm7ty6gr
-        onboarding_status:
-          type: string
-          example: employees_invited
+          example: paysch_1234
         name:
           type: string
-        business_type:
+          example: Bi-Weekly Payroll
+        reference_pay_date:
           type: string
-        ein:
+          format: date
+          deprecated: true
+        start_date:
           type: string
-        dba:
+          format: date
+        end_date:
           type: string
-        address_line1:
+          format: date
+        frequency:
           type: string
-        address_line2:
-          type: string
-        city:
-          type: string
-        state:
-          type: string
-        zip:
-          type: string
-        phone_number:
-          type: string
-        industry:
-          type: string
-          example: professional_scientific_and_technical_services
-        lifecycle_events:
-          type: array
-          items:
-            $ref: '#/components/schemas/LifecycleEvent'
-        pay_schedules:
-          type: array
-          items:
-            $ref: '#/components/schemas/PaySchedule'
-        pricing:
-          $ref: '#/components/schemas/EmployerPricing'
-        metadata:
-          $ref: '#/components/schemas/Metadata'
-    LifecycleEvent:
-      type: object
-      properties:
-        id:
-          type: string
-          example: lcevent_01j2j3smtwx656y2tbqm7ty6gr
-        event_type:
-          type: string
-          example: employees_invited
-        timestamp:
-          type: string
-          format: date-time
-    Money:
-      type: object
-      description: A monetary amount in minor units with an ISO 4217 currency code.
-      properties:
-        amount:
+          example: bi_weekly
+        first_day:
           type: integer
-          description: Amount in the smallest currency unit (e.g. cents).
-        currency_code:
+          deprecated: true
+        second_day:
+          type: integer
+          deprecated: true
+        bank_closure_strategy:
           type: string
-          example: USD
+          example: before
+        remote_id:
+          type: string
+          example: remote_123
+        active:
+          type: boolean
     Pagination:
       type: object
       properties:
@@ -330,64 +311,83 @@ components:
           $ref: '#/components/schemas/EmployerPricing'
         metadata:
           $ref: '#/components/schemas/Metadata'
+    Metadata:
+      type: object
+      description: Set of key-value pairs that you can attach to an API resource for storing additional structured information. Individual keys can be unset by posting an empty string value; all keys can be unset by posting an empty object.
+      additionalProperties:
+        type: string
+    Employer:
+      type: object
+      properties:
+        id:
+          type: string
+          example: empl_01j2j3smtwx656y2tbqm7ty6gr
+        onboarding_status:
+          type: string
+          example: employees_invited
+        name:
+          type: string
+        business_type:
+          type: string
+        ein:
+          type: string
+        dba:
+          type: string
+        address_line1:
+          type: string
+        address_line2:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        zip:
+          type: string
+        phone_number:
+          type: string
+        industry:
+          type: string
+          example: professional_scientific_and_technical_services
+        lifecycle_events:
+          type: array
+          items:
+            $ref: '#/components/schemas/LifecycleEvent'
+        pay_schedules:
+          type: array
+          items:
+            $ref: '#/components/schemas/PaySchedule'
+        pricing:
+          $ref: '#/components/schemas/EmployerPricing'
+        metadata:
+          $ref: '#/components/schemas/Metadata'
     EmployerPricing:
       type: object
       description: The monthly pricing for the employer. Must be greater than the expected commission.
       properties:
         platform_fee:
           $ref: '#/components/schemas/Money'
-    CurrentHealthInsurance:
+    Money:
       type: object
-      description: Current health insurance plan details
+      description: A monetary amount in minor units with an ISO 4217 currency code.
       properties:
-        individual_deductible:
+        amount:
           type: integer
-          example: 1500
-        individual_oop_max:
-          type: integer
-          example: 5000
-        network_type:
+          description: Amount in the smallest currency unit (e.g. cents).
+        currency_code:
           type: string
-          example: hmo
-        metal_tier:
-          type: string
-          example: silver
-    PaySchedule:
+          example: USD
+    LifecycleEvent:
       type: object
       properties:
         id:
           type: string
-          example: paysch_1234
-        name:
+          example: lcevent_01j2j3smtwx656y2tbqm7ty6gr
+        event_type:
           type: string
-          example: Bi-Weekly Payroll
-        reference_pay_date:
+          example: employees_invited
+        timestamp:
           type: string
-          format: date
-          deprecated: true
-        start_date:
-          type: string
-          format: date
-        end_date:
-          type: string
-          format: date
-        frequency:
-          type: string
-          example: bi_weekly
-        first_day:
-          type: integer
-          deprecated: true
-        second_day:
-          type: integer
-          deprecated: true
-        bank_closure_strategy:
-          type: string
-          example: before
-        remote_id:
-          type: string
-          example: remote_123
-        active:
-          type: boolean
+          format: date-time
     EmployerUpdate:
       type: object
       properties:
