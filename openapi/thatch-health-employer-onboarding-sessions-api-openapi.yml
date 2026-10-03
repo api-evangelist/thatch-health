@@ -56,6 +56,9 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  responses:
+    Unauthorized:
+      description: Authentication failed or API key missing/invalid.
   schemas:
     EmployerOnboardingSession:
       type: object
@@ -73,9 +76,6 @@ components:
         expires_at:
           type: string
           format: date-time
-  responses:
-    Unauthorized:
-      description: Authentication failed or API key missing/invalid.
   securitySchemes:
     Bearer:
       type: http

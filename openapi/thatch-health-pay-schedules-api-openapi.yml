@@ -275,10 +275,10 @@ components:
           deprecated: true
           description: Deprecated - use second_pay_date instead
   responses:
-    Unauthorized:
-      description: Authentication failed or API key missing/invalid.
     NotFound:
       description: The requested resource was not found.
+    Unauthorized:
+      description: Authentication failed or API key missing/invalid.
   securitySchemes:
     Bearer:
       type: http

@@ -67,24 +67,6 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
-    Pagination:
-      type: object
-      properties:
-        total_records:
-          type: integer
-          example: 25
-        current_page:
-          type: integer
-          example: 1
-        total_pages:
-          type: integer
-          example: 3
-        next_page:
-          type: integer
-          example: 2
-        prev_page:
-          type: integer
-          example: 0
     EmployeeDeductions:
       type: object
       properties:
@@ -95,6 +77,19 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/DeductionPeriod'
+    DeductionPeriod:
+      type: object
+      properties:
+        start_date:
+          type: string
+          format: date
+        end_date:
+          type: string
+          format: date
+        deductions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Deduction'
     Money:
       type: object
       description: A monetary amount in minor units with an ISO 4217 currency code.
@@ -115,29 +110,25 @@ components:
           example: s125_pretax
         applied_correction:
           $ref: '#/components/schemas/Money'
-    DeductionPeriod:
+    Pagination:
       type: object
       properties:
-        start_date:
-          type: string
-          format: date
-        end_date:
-          type: string
-          format: date
-        deductions:
-          type: array
-          items:
-            $ref: '#/components/schemas/Deduction'
+        total_records:
+          type: integer
+          example: 25
+        current_page:
+          type: integer
+          example: 1
+        total_pages:
+          type: integer
+          example: 3
+        next_page:
+          type: integer
+          example: 2
+        prev_page:
+          type: integer
+          example: 0
   parameters:
-    PageNumber:
-      name: page[number]
-      in: query
-      description: Page number
-      schema:
-        type: integer
-        format: int32
-        minimum: 1
-        default: 1
     PageSize:
       name: page[size]
       in: query
@@ -148,6 +139,15 @@ components:
         minimum: 1
         maximum: 1000
         default: 20
+    PageNumber:
+      name: page[number]
+      in: query
+      description: Page number
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+        default: 1
   responses:
     Unauthorized:
       description: Authentication failed or API key missing/invalid.
