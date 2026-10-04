@@ -77,6 +77,16 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/DeductionPeriod'
+    Money:
+      type: object
+      description: A monetary amount in minor units with an ISO 4217 currency code.
+      properties:
+        amount:
+          type: integer
+          description: Amount in the smallest currency unit (e.g. cents).
+        currency_code:
+          type: string
+          example: USD
     DeductionPeriod:
       type: object
       properties:
@@ -90,16 +100,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Deduction'
-    Money:
-      type: object
-      description: A monetary amount in minor units with an ISO 4217 currency code.
-      properties:
-        amount:
-          type: integer
-          description: Amount in the smallest currency unit (e.g. cents).
-        currency_code:
-          type: string
-          example: USD
     Deduction:
       type: object
       properties:

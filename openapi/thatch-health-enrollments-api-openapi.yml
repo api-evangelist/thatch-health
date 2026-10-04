@@ -90,6 +90,28 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
+    EnrollmentCoverage:
+      type: object
+      properties:
+        first_name:
+          type: string
+        last_name:
+          type: string
+        relationship:
+          type: string
+          example: self
+        date_of_birth:
+          type: string
+          format: date
+        gender:
+          type: string
+          example: female
+        start_date:
+          type: string
+          format: date
+        end_date:
+          type: string
+          format: date
     Money:
       type: object
       description: A monetary amount in minor units with an ISO 4217 currency code.
@@ -100,15 +122,24 @@ components:
         currency_code:
           type: string
           example: USD
-    StatusEvent:
+    Pagination:
       type: object
       properties:
-        status:
-          type: string
-          example: completed
-        timestamp:
-          type: string
-          format: date-time
+        total_records:
+          type: integer
+          example: 25
+        current_page:
+          type: integer
+          example: 1
+        total_pages:
+          type: integer
+          example: 3
+        next_page:
+          type: integer
+          example: 2
+        prev_page:
+          type: integer
+          example: 0
     Broker:
       type: object
       properties:
@@ -118,24 +149,6 @@ components:
         npn:
           type: string
           example: '20782309'
-    Plan:
-      type: object
-      properties:
-        id:
-          type: string
-          example: mdpln_01j7h53nf2j0hc5a235b6xmxn4
-        name:
-          type: string
-          example: Anthem Bronze 60 D HMO
-        carrier_name:
-          type: string
-          example: Anthem
-        hsa_eligible:
-          type: boolean
-        logo_url:
-          type: string
-        sbc_url:
-          type: string
     Enrollment:
       type: object
       properties:
@@ -179,46 +192,33 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/EnrollmentCoverage'
-    Pagination:
+    Plan:
       type: object
       properties:
-        total_records:
-          type: integer
-          example: 25
-        current_page:
-          type: integer
-          example: 1
-        total_pages:
-          type: integer
-          example: 3
-        next_page:
-          type: integer
-          example: 2
-        prev_page:
-          type: integer
-          example: 0
-    EnrollmentCoverage:
+        id:
+          type: string
+          example: mdpln_01j7h53nf2j0hc5a235b6xmxn4
+        name:
+          type: string
+          example: Anthem Bronze 60 D HMO
+        carrier_name:
+          type: string
+          example: Anthem
+        hsa_eligible:
+          type: boolean
+        logo_url:
+          type: string
+        sbc_url:
+          type: string
+    StatusEvent:
       type: object
       properties:
-        first_name:
+        status:
           type: string
-        last_name:
+          example: completed
+        timestamp:
           type: string
-        relationship:
-          type: string
-          example: self
-        date_of_birth:
-          type: string
-          format: date
-        gender:
-          type: string
-          example: female
-        start_date:
-          type: string
-          format: date
-        end_date:
-          type: string
-          format: date
+          format: date-time
   parameters:
     PageSize:
       name: page[size]

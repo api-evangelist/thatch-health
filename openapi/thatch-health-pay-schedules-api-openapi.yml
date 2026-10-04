@@ -134,42 +134,6 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    PaySchedule:
-      type: object
-      properties:
-        id:
-          type: string
-          example: paysch_1234
-        name:
-          type: string
-          example: Bi-Weekly Payroll
-        reference_pay_date:
-          type: string
-          format: date
-          deprecated: true
-        start_date:
-          type: string
-          format: date
-        end_date:
-          type: string
-          format: date
-        frequency:
-          type: string
-          example: bi_weekly
-        first_day:
-          type: integer
-          deprecated: true
-        second_day:
-          type: integer
-          deprecated: true
-        bank_closure_strategy:
-          type: string
-          example: before
-        remote_id:
-          type: string
-          example: remote_123
-        active:
-          type: boolean
     PayScheduleUpdate:
       type: object
       properties:
@@ -274,6 +238,42 @@ components:
           maximum: 31
           deprecated: true
           description: Deprecated - use second_pay_date instead
+    PaySchedule:
+      type: object
+      properties:
+        id:
+          type: string
+          example: paysch_1234
+        name:
+          type: string
+          example: Bi-Weekly Payroll
+        reference_pay_date:
+          type: string
+          format: date
+          deprecated: true
+        start_date:
+          type: string
+          format: date
+        end_date:
+          type: string
+          format: date
+        frequency:
+          type: string
+          example: bi_weekly
+        first_day:
+          type: integer
+          deprecated: true
+        second_day:
+          type: integer
+          deprecated: true
+        bank_closure_strategy:
+          type: string
+          example: before
+        remote_id:
+          type: string
+          example: remote_123
+        active:
+          type: boolean
   responses:
     NotFound:
       description: The requested resource was not found.
