@@ -90,28 +90,6 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    EnrollmentCoverage:
-      type: object
-      properties:
-        first_name:
-          type: string
-        last_name:
-          type: string
-        relationship:
-          type: string
-          example: self
-        date_of_birth:
-          type: string
-          format: date
-        gender:
-          type: string
-          example: female
-        start_date:
-          type: string
-          format: date
-        end_date:
-          type: string
-          format: date
     Money:
       type: object
       description: A monetary amount in minor units with an ISO 4217 currency code.
@@ -122,6 +100,15 @@ components:
         currency_code:
           type: string
           example: USD
+    StatusEvent:
+      type: object
+      properties:
+        status:
+          type: string
+          example: completed
+        timestamp:
+          type: string
+          format: date-time
     Pagination:
       type: object
       properties:
@@ -140,15 +127,6 @@ components:
         prev_page:
           type: integer
           example: 0
-    Broker:
-      type: object
-      properties:
-        name:
-          type: string
-          example: Thatch Health Insurance Services LLC
-        npn:
-          type: string
-          example: '20782309'
     Enrollment:
       type: object
       properties:
@@ -192,6 +170,15 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/EnrollmentCoverage'
+    Broker:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Thatch Health Insurance Services LLC
+        npn:
+          type: string
+          example: '20782309'
     Plan:
       type: object
       properties:
@@ -210,16 +197,43 @@ components:
           type: string
         sbc_url:
           type: string
-    StatusEvent:
+    EnrollmentCoverage:
       type: object
       properties:
-        status:
+        first_name:
           type: string
-          example: completed
-        timestamp:
+        last_name:
           type: string
-          format: date-time
+        relationship:
+          type: string
+          example: self
+        date_of_birth:
+          type: string
+          format: date
+        gender:
+          type: string
+          example: female
+        start_date:
+          type: string
+          format: date
+        end_date:
+          type: string
+          format: date
+  responses:
+    NotFound:
+      description: The requested resource was not found.
+    Unauthorized:
+      description: Authentication failed or API key missing/invalid.
   parameters:
+    PageNumber:
+      name: page[number]
+      in: query
+      description: Page number
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+        default: 1
     PageSize:
       name: page[size]
       in: query
@@ -230,20 +244,6 @@ components:
         minimum: 1
         maximum: 1000
         default: 20
-    PageNumber:
-      name: page[number]
-      in: query
-      description: Page number
-      schema:
-        type: integer
-        format: int32
-        minimum: 1
-        default: 1
-  responses:
-    NotFound:
-      description: The requested resource was not found.
-    Unauthorized:
-      description: Authentication failed or API key missing/invalid.
   securitySchemes:
     Bearer:
       type: http

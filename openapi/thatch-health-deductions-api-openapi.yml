@@ -67,16 +67,6 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
-    EmployeeDeductions:
-      type: object
-      properties:
-        employee_id:
-          type: string
-          example: employee_01j85kpd8yxkabyrm83d3h2ya3
-        periods:
-          type: array
-          items:
-            $ref: '#/components/schemas/DeductionPeriod'
     Money:
       type: object
       description: A monetary amount in minor units with an ISO 4217 currency code.
@@ -87,29 +77,6 @@ components:
         currency_code:
           type: string
           example: USD
-    DeductionPeriod:
-      type: object
-      properties:
-        start_date:
-          type: string
-          format: date
-        end_date:
-          type: string
-          format: date
-        deductions:
-          type: array
-          items:
-            $ref: '#/components/schemas/Deduction'
-    Deduction:
-      type: object
-      properties:
-        amount:
-          $ref: '#/components/schemas/Money'
-        type:
-          type: string
-          example: s125_pretax
-        applied_correction:
-          $ref: '#/components/schemas/Money'
     Pagination:
       type: object
       properties:
@@ -128,7 +95,49 @@ components:
         prev_page:
           type: integer
           example: 0
+    EmployeeDeductions:
+      type: object
+      properties:
+        employee_id:
+          type: string
+          example: employee_01j85kpd8yxkabyrm83d3h2ya3
+        periods:
+          type: array
+          items:
+            $ref: '#/components/schemas/DeductionPeriod'
+    Deduction:
+      type: object
+      properties:
+        amount:
+          $ref: '#/components/schemas/Money'
+        type:
+          type: string
+          example: s125_pretax
+        applied_correction:
+          $ref: '#/components/schemas/Money'
+    DeductionPeriod:
+      type: object
+      properties:
+        start_date:
+          type: string
+          format: date
+        end_date:
+          type: string
+          format: date
+        deductions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Deduction'
   parameters:
+    PageNumber:
+      name: page[number]
+      in: query
+      description: Page number
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+        default: 1
     PageSize:
       name: page[size]
       in: query
@@ -139,15 +148,6 @@ components:
         minimum: 1
         maximum: 1000
         default: 20
-    PageNumber:
-      name: page[number]
-      in: query
-      description: Page number
-      schema:
-        type: integer
-        format: int32
-        minimum: 1
-        default: 1
   responses:
     Unauthorized:
       description: Authentication failed or API key missing/invalid.

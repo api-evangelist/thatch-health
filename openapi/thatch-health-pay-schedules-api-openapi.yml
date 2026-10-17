@@ -133,6 +133,11 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  responses:
+    NotFound:
+      description: The requested resource was not found.
+    Unauthorized:
+      description: Authentication failed or API key missing/invalid.
   schemas:
     PayScheduleUpdate:
       type: object
@@ -274,11 +279,6 @@ components:
           example: remote_123
         active:
           type: boolean
-  responses:
-    NotFound:
-      description: The requested resource was not found.
-    Unauthorized:
-      description: Authentication failed or API key missing/invalid.
   securitySchemes:
     Bearer:
       type: http

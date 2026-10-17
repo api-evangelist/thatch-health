@@ -127,120 +127,24 @@ components:
       description: Set of key-value pairs that you can attach to an API resource for storing additional structured information. Individual keys can be unset by posting an empty string value; all keys can be unset by posting an empty object.
       additionalProperties:
         type: string
-    LifecycleEvent:
+    Pagination:
       type: object
       properties:
-        id:
-          type: string
-          example: lcevent_01j2j3smtwx656y2tbqm7ty6gr
-        event_type:
-          type: string
-          example: employees_invited
-        timestamp:
-          type: string
-          format: date-time
-    CurrentHealthInsurance:
-      type: object
-      description: Current health insurance plan details
-      properties:
-        individual_deductible:
+        total_records:
           type: integer
-          example: 1500
-        individual_oop_max:
+          example: 25
+        current_page:
           type: integer
-          example: 5000
-        network_type:
-          type: string
-          example: hmo
-        metal_tier:
-          type: string
-          example: silver
-    EmployerPricing:
-      type: object
-      description: The monthly pricing for the employer. Must be greater than the expected commission.
-      properties:
-        platform_fee:
-          $ref: '#/components/schemas/Money'
-    PaySchedule:
-      type: object
-      properties:
-        id:
-          type: string
-          example: paysch_1234
-        name:
-          type: string
-          example: Bi-Weekly Payroll
-        reference_pay_date:
-          type: string
-          format: date
-          deprecated: true
-        start_date:
-          type: string
-          format: date
-        end_date:
-          type: string
-          format: date
-        frequency:
-          type: string
-          example: bi_weekly
-        first_day:
+          example: 1
+        total_pages:
           type: integer
-          deprecated: true
-        second_day:
+          example: 3
+        next_page:
           type: integer
-          deprecated: true
-        bank_closure_strategy:
-          type: string
-          example: before
-        remote_id:
-          type: string
-          example: remote_123
-        active:
-          type: boolean
-    Employer:
-      type: object
-      properties:
-        id:
-          type: string
-          example: empl_01j2j3smtwx656y2tbqm7ty6gr
-        onboarding_status:
-          type: string
-          example: employees_invited
-        name:
-          type: string
-        business_type:
-          type: string
-        ein:
-          type: string
-        dba:
-          type: string
-        address_line1:
-          type: string
-        address_line2:
-          type: string
-        city:
-          type: string
-        state:
-          type: string
-        zip:
-          type: string
-        phone_number:
-          type: string
-        industry:
-          type: string
-          example: professional_scientific_and_technical_services
-        lifecycle_events:
-          type: array
-          items:
-            $ref: '#/components/schemas/LifecycleEvent'
-        pay_schedules:
-          type: array
-          items:
-            $ref: '#/components/schemas/PaySchedule'
-        pricing:
-          $ref: '#/components/schemas/EmployerPricing'
-        metadata:
-          $ref: '#/components/schemas/Metadata'
+          example: 2
+        prev_page:
+          type: integer
+          example: 0
     EmployerCreate:
       type: object
       required:
@@ -370,24 +274,120 @@ components:
           $ref: '#/components/schemas/EmployerPricing'
         metadata:
           $ref: '#/components/schemas/Metadata'
-    Pagination:
+    CurrentHealthInsurance:
+      type: object
+      description: Current health insurance plan details
+      properties:
+        individual_deductible:
+          type: integer
+          example: 1500
+        individual_oop_max:
+          type: integer
+          example: 5000
+        network_type:
+          type: string
+          example: hmo
+        metal_tier:
+          type: string
+          example: silver
+    LifecycleEvent:
       type: object
       properties:
-        total_records:
+        id:
+          type: string
+          example: lcevent_01j2j3smtwx656y2tbqm7ty6gr
+        event_type:
+          type: string
+          example: employees_invited
+        timestamp:
+          type: string
+          format: date-time
+    Employer:
+      type: object
+      properties:
+        id:
+          type: string
+          example: empl_01j2j3smtwx656y2tbqm7ty6gr
+        onboarding_status:
+          type: string
+          example: employees_invited
+        name:
+          type: string
+        business_type:
+          type: string
+        ein:
+          type: string
+        dba:
+          type: string
+        address_line1:
+          type: string
+        address_line2:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        zip:
+          type: string
+        phone_number:
+          type: string
+        industry:
+          type: string
+          example: professional_scientific_and_technical_services
+        lifecycle_events:
+          type: array
+          items:
+            $ref: '#/components/schemas/LifecycleEvent'
+        pay_schedules:
+          type: array
+          items:
+            $ref: '#/components/schemas/PaySchedule'
+        pricing:
+          $ref: '#/components/schemas/EmployerPricing'
+        metadata:
+          $ref: '#/components/schemas/Metadata'
+    PaySchedule:
+      type: object
+      properties:
+        id:
+          type: string
+          example: paysch_1234
+        name:
+          type: string
+          example: Bi-Weekly Payroll
+        reference_pay_date:
+          type: string
+          format: date
+          deprecated: true
+        start_date:
+          type: string
+          format: date
+        end_date:
+          type: string
+          format: date
+        frequency:
+          type: string
+          example: bi_weekly
+        first_day:
           type: integer
-          example: 25
-        current_page:
+          deprecated: true
+        second_day:
           type: integer
-          example: 1
-        total_pages:
-          type: integer
-          example: 3
-        next_page:
-          type: integer
-          example: 2
-        prev_page:
-          type: integer
-          example: 0
+          deprecated: true
+        bank_closure_strategy:
+          type: string
+          example: before
+        remote_id:
+          type: string
+          example: remote_123
+        active:
+          type: boolean
+    EmployerPricing:
+      type: object
+      description: The monthly pricing for the employer. Must be greater than the expected commission.
+      properties:
+        platform_fee:
+          $ref: '#/components/schemas/Money'
     EmployerUpdate:
       type: object
       properties:
@@ -402,7 +402,21 @@ components:
           $ref: '#/components/schemas/EmployerPricing'
         metadata:
           $ref: '#/components/schemas/Metadata'
+  responses:
+    NotFound:
+      description: The requested resource was not found.
+    Unauthorized:
+      description: Authentication failed or API key missing/invalid.
   parameters:
+    PageNumber:
+      name: page[number]
+      in: query
+      description: Page number
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+        default: 1
     PageSize:
       name: page[size]
       in: query
@@ -413,20 +427,6 @@ components:
         minimum: 1
         maximum: 1000
         default: 20
-    PageNumber:
-      name: page[number]
-      in: query
-      description: Page number
-      schema:
-        type: integer
-        format: int32
-        minimum: 1
-        default: 1
-  responses:
-    NotFound:
-      description: The requested resource was not found.
-    Unauthorized:
-      description: Authentication failed or API key missing/invalid.
   securitySchemes:
     Bearer:
       type: http
